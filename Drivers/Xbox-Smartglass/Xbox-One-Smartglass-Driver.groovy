@@ -50,9 +50,7 @@ metadata {
 
 
 def initialize(){
-      
-   // log.debug "The current state is $currstate"
-    
+   
     if (pollTime == "1 Minute") {
         schedule("0 * * ? * *", refresh)
         if(logEnable) log.debug "Polled. Polling in another $pollTime"
@@ -154,7 +152,7 @@ def on() {
     if(xboxStatus == "Available") {
         
         if(logEnable) log.debug "Not sending poweron commands. Xbox $xboxIP is reporting available. This could be because the Xbox is already on."
-        log.info "Skipping. Xbox $xboxIP is already On"
+        log.info "Skipping. Xbox $xboxIP is already on"
  
         }
         
@@ -162,7 +160,7 @@ def on() {
         
             httpGet([uri:"http://${restIp}:$restPORT/device/$liveID/poweron?addr=$xboxIP", timeout: 10]) { response -> 
                 if (response.isSuccess())
-                    log.info "Turning On Xbox $xboxIP"
+                    log.info "Turning on Xbox $xboxIP"
                 }
         }
        
@@ -196,7 +194,7 @@ def off() {
     
     httpGet([uri:"http://${restIp}:$restPORT/device/$liveID/poweroff?addr=$xboxIP", timeout: 10]) { response -> 
             if (response.isSuccess())
-            log.info "Turning Off Xbox $xboxIP"
+            log.info "Turning off Xbox $xboxIP"
             
         }
     
