@@ -38,9 +38,13 @@
  3.) Save the driver and go to your drivers section under Hubitat.
  4.) Create a new driver with a name of your choice "Xbox One X" and select the driver "Xbox Smartglass Driver". Click Save.
  5.) Now fill in the paramaters to match your devices.
- 6.) Consider picking a Poll Time that makes sense. This will make calls to your REST server to check if the Xbox is available (Turned On).
+ 6.) Consider picking a Poll Time that makes sense. This will make calls to your REST server to check if the Xbox is available (Turned        On).
      This is required so it can track state changes if you turn the Xbox on by hand. 
      
+     
+EXAMPLES/IDEAS:
+ 
+You can initiate a manual refresh if needed. You can do this using a RM rule. Remember to choose custom attribute and select refresh. This will force a check if the Xbox One is online or not if you don't want to wait for refresh schedule.
  SUPPORT:
  
  You can find me under the Hubitat forums if you have any questions.
