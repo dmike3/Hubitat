@@ -33,7 +33,7 @@ preferences {
     input name: "restPORT", type: "text",   title: "REST Port Number", required: true
     input name: "xboxIP", type: "text",   title: "Xbox IP Address", required: true
     input name: "liveID", type: "text",   title: "Live ID", required: true
-    input "pollTime", "enum", required: false, multiple: false, title: "Poll Time", defaultValue: timeOptions[1], options: timeOptions
+    input name: "pollTime", type: "enum", title: "Poll Time", required: false, multiple: false, defaultValue: timeOptions[1], options: timeOptions
     input name: "logEnable", type: "bool",   title: "Enable debug logging", defaultValue: false, required: true
 
 }
