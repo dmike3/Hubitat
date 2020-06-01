@@ -4,7 +4,6 @@
  * Smartglass API: https://github.com/openxbox/xbox-smartglass-core-python
  * Description: Xbox One Smartglass Intergration. It interfaces with the Xbox Smartglass Project giving local control
  * to your Xbox.
- * A driver to interface with the Xbox Smartglass Python API via REST.
  *-------------------------------------------------------------------------------------------------------------------
  * Copyright 2020 Mike Fenton
  * 
