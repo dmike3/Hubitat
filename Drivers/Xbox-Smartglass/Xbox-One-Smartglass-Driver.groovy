@@ -11,7 +11,7 @@
  * Download Links:
  *
  * Driver: https://github.com/dmike3/Hubitat/blob/master/Drivers/Xbox-Smartglass/Xbox-One-Smartglass-Driver.groovy
- * Xbox One Smartglass Project: https://github.com/openxbox/xbox-smartglass-core-python
+ * Xbox One Smartglass Project: https://pypi.org/project/xbox-smartglass-core/
  *
  * README: https://github.com/dmike3/Hubitat/blob/master/Drivers/Xbox-Smartglass/README.TXT
  *-------------------------------------------------------------------------------------------------------------------
