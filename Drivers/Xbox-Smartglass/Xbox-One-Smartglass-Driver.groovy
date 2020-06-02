@@ -53,38 +53,31 @@ def initialize(){
    
     if (pollTime == "1 Minute") {
         schedule("0 * * ? * *", refresh)
-        if(logEnable) log.debug "Polled. Polling in another $pollTime"
     }
     
-     if (pollTime == "3 Minutes") {
+    if (pollTime == "3 Minutes") {
         schedule("0 */3 * ? * *", refresh)
-        if(logEnable) log.debug "Polled. Polling in another $pollTime"
     }
     
     
     if (pollTime == "5 Minutes") {
         schedule("0 */5 * ? * *	", refresh)
-        if(logEnable) log.debug "Polled. Polling in another $pollTime"
     }
     
     if (pollTime == "10 Minutes") {
         schedule("0 */10 * ? * *", refresh)
-        if(logEnable) log.debug "Polled. Polling in another $pollTime"
     }
     
     if (pollTime == "15 Minutes") {
         schedule("0 */15 * ? * *", refresh)
-        if(logEnable) log.debug "Polled. Polling in another $pollTime"
     }
     
     if (pollTime == "30 Minutes") {
         schedule("0 */30 * ? * *", refresh)
-        if(logEnable) log.debug "Polled. Polling in another $pollTime"
     }
     
     if (pollTime == "1 Hour") {
         schedule("0 0 * ? * *", refresh)
-        if(logEnable) log.debug "Polled. Polling in another $pollTime"
     }
        
 }
