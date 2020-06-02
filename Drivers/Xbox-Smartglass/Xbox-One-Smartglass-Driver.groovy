@@ -216,12 +216,7 @@ def off() {
     
     if(xboxStatus == "Available") {
         if(logEnable) log.debug "The status of $xboxIP is $xboxStatus. Sending power off commands"    
-        httpGet([uri:"http://${restIp}:$restPORT/device", timeout: 10]) { response -> 
-            if (response.isSuccess())
-            if(logEnable) log.debug "Polling Xbox Devices"
-        }
-    
-    
+        
     httpGet([uri:"http://${restIp}:$restPORT/device/$liveID/connect?anonymous=true", timeout: 10]) { response -> 
             if (response.isSuccess())
             if(logEnable) log.debug "Connecting to Xbox $xboxIP"
