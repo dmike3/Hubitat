@@ -29,7 +29,8 @@
      
 EXAMPLES/IDEAS:
  
-You can initiate a manual refresh if needed. You can do this using a RM rule. Remember to choose custom attribute and select refresh. This will force a check if the Xbox One is online or not if you don't want to wait for refresh schedule.
+You can initiate a manual refresh if needed. You can do this using a RM rule. Remember to choose custom attribute and select refresh.
+This will force a check if the Xbox One is online or not if you don't want to wait for refresh schedule.
 
 Obviouse use case would be to include this in one of your app schedule. Possibly a bedtime routine or an occupany routine?
 SUPPORT:
