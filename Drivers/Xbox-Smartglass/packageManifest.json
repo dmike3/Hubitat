@@ -4,7 +4,7 @@
   "documentationLink": "https://github.com/dmike3/Hubitat/blob/master/Drivers/Xbox-Smartglass/README.TXT",
   "version": "1.0",
   "minimumHEVersion": "2.2.0",
-  "dateReleased": "2020-06-01",
+  "dateReleased": "2020-06-02",
   "drivers": [
     {
       "id": "b5fd32e5-0168-4944-8745-e256b6ed1b99",
