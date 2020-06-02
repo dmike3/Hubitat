@@ -39,8 +39,8 @@ preferences {
 }
 
 metadata {
-    
-    definition (name: "Xbox One Smartglass Driver", namespace: "n3!", author: "Mike Fenton") {
+
+    definition (name: "Xbox One Smartglass Driver", namespace: "n3!", author: "Mike Fenton", importUrl: "https://github.com/dmike3/Hubitat/blob/master/Drivers/Xbox-Smartglass/Xbox-One-Smartglass-Driver.groovy") {
     capability "Initialize"
     capability "Switch"
     capability "Refresh"
