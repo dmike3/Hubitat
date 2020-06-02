@@ -7,8 +7,6 @@
  
  After completing and confirming the REST server is working. You will add the driver to your driver codes section of Hubitat.
  
- 
- 
  *** PREREQUISITES: ***
  
  1.) Smartglass REST Server
