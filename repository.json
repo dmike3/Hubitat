@@ -1,6 +1,7 @@
 {
   "author": "Mike Fenton",
   "gitHubUrl": "https://github.com/dmike3/",
+  "payPalUrl": "https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=7TFJDAWDBTJL2&currency_code=USD&source=url",
   "packages": [
     {
       "name": "Xbox One Smartglass Driver",
