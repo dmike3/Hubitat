@@ -103,6 +103,10 @@ def refresh() {
     def xboxStatus = ""
     def currstate = device.currentState("switch").getValue()
     
+    httpGet([uri:"http://${restIp}:$restPORT/device", timeout: 10]) { response -> 
+            if (response.isSuccess())
+            if(logEnable) log.debug "Polling Xbox Devices"
+        } 
   
     httpGet([uri:"http://${restIp}:$restPORT/device?addr=$xboxIP"], { response ->
     xboxStatus = response.data.devices[liveID].device_status // Storing Device Status in Variable
@@ -165,6 +169,11 @@ def on() {
     sendEvent(name: "switch", value: "on")
     def xboxStatus = ""
     
+    httpGet([uri:"http://${restIp}:$restPORT/device", timeout: 10]) { response -> 
+            if (response.isSuccess())
+            if(logEnable) log.debug "Polling Xbox Devices"
+        }
+    
     // Checking Xbox Power State via REST
     httpGet([uri:"http://${restIp}:$restPORT/device?addr=$xboxIP"], { response ->
         xboxStatus = response.data.devices[liveID].device_status // Storing Device Status in Variable
@@ -193,6 +202,12 @@ def off() {
 
     sendEvent(name: "switch", value: "off")
     def xboxStatus = ""
+    
+    httpGet([uri:"http://${restIp}:$restPORT/device", timeout: 10]) { response -> 
+            if (response.isSuccess())
+            if(logEnable) log.debug "Polling Xbox Devices"
+        }
+    
  
     httpGet([uri:"http://${restIp}:$restPORT/device?addr=$xboxIP"], { response ->
     xboxStatus = response.data.devices[liveID].device_status // Storing Device Status in Variable
