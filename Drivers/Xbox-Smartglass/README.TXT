@@ -4,7 +4,7 @@
  
  *** GENERAL ***
  
- This driver works with the Xbox Smartglass project. See the links above. 
+ This driver works with the Xbox Smartglass project which gives local control of your Xbox On.e. See the links above. 
  
  You need to first setup and configure the Xbox Smartglass REST server and confirm working before setting up the Hubitat driver. 
  The installation guide can be found on the project site.
