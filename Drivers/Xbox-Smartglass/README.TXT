@@ -1,7 +1,3 @@
- *** BETA v1.0 ***
- 
- This driver is currently Beta. I plan to add more features in the near future.
- 
  *** GENERAL ***
  
  This driver works with the Xbox Smartglass project which gives local control of your Xbox One. See the links above. 
