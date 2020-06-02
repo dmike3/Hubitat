@@ -128,6 +128,25 @@ def refresh() {
 
 // Commands
 
+    command "clear"
+    command "enroll"
+    command "nexus"
+    command "menu"
+    command "view"
+    command "a"
+    command "b"
+    command "x"
+    command "y"
+    command "dpad_up"
+    command "dpad_down"
+    command "dpad_left"
+    command "dpad_right"
+    command "left_shoulder"
+    command "right_shoulder"
+    command "left_thumbstick"
+    command "right_thumbstick"
+        
+
 // Event Handlers
 
 // *** Turning On ***
@@ -195,7 +214,280 @@ def off() {
     
     else {
             if(logEnable) log.debug "Not sending poweroff commands. Xbox $xboxIP isn't reporting available. This could be because the Xbox is already off."
-            log.info "Skipping. Xbox $xboxIP is already off."
+            log.info "Skipping. Xbox $xboxIP is already off"
     }
   	
+}
+
+// Xbox Buttons
+
+def clear() {
+    
+    httpGet([uri:"http://${restIp}:$restPORT/device/$liveID/connect?anonymous=true", timeout: 10]) { response -> 
+        if (response.isSuccess())
+            if(logEnable) log.debug "Connecting to Xbox $xboxIP"
+           
+        }
+    
+    httpGet([uri:"http://${restIp}:$restPORT/device/$liveID/input/clear", timeout: 10]) { response -> 
+        if (response.isSuccess())
+            if(logEnable) log.debug "Clear button was pressed"
+           
+    }
+}
+
+def enroll() {
+    
+    httpGet([uri:"http://${restIp}:$restPORT/device/$liveID/connect?anonymous=true", timeout: 10]) { response -> 
+        if (response.isSuccess())
+            if(logEnable) log.debug "Connecting to Xbox $xboxIP"
+           
+        }
+    
+    httpGet([uri:"http://${restIp}:$restPORT/device/$liveID/input/enroll", timeout: 10]) { response -> 
+        if (response.isSuccess())
+            if(logEnable) log.debug "Enroll button was pressed"
+           
+    }
+    
+}
+
+def nexus() {
+    
+    httpGet([uri:"http://${restIp}:$restPORT/device/$liveID/connect?anonymous=true", timeout: 10]) { response -> 
+        if (response.isSuccess())
+            if(logEnable) log.debug "Connecting to Xbox $xboxIP"
+           
+        }
+    
+    httpGet([uri:"http://${restIp}:$restPORT/device/$liveID/input/nexus", timeout: 10]) { response -> 
+        if (response.isSuccess())
+            if(logEnable) log.debug "Nexus button was pressed"
+           
+    }
+    
+}
+
+def menu() {
+    
+    httpGet([uri:"http://${restIp}:$restPORT/device/$liveID/connect?anonymous=true", timeout: 10]) { response -> 
+            if (response.isSuccess())
+            if(logEnable) log.debug "Connecting to Xbox $xboxIP"
+           
+        }
+    
+    httpGet([uri:"http://${restIp}:$restPORT/device/$liveID/input/menu", timeout: 10]) { response -> 
+        if (response.isSuccess())
+            if(logEnable) log.debug "Menu button was pressed"
+           
+    }
+    
+}
+
+def view() {
+    
+    httpGet([uri:"http://${restIp}:$restPORT/device/$liveID/connect?anonymous=true", timeout: 10]) { response -> 
+        if (response.isSuccess())
+            if(logEnable) log.debug "Connecting to Xbox $xboxIP"
+           
+        }
+    
+    httpGet([uri:"http://${restIp}:$restPORT/device/$liveID/input/view", timeout: 10]) { response -> 
+        if (response.isSuccess())
+            if(logEnable) log.debug "View button was pressed"
+           
+    }
+    
+}
+
+def a() {
+    
+    httpGet([uri:"http://${restIp}:$restPORT/device/$liveID/connect?anonymous=true", timeout: 10]) { response -> 
+        if (response.isSuccess())
+            if(logEnable) log.debug "Connecting to Xbox $xboxIP"
+           
+        }
+    
+    httpGet([uri:"http://${restIp}:$restPORT/device/$liveID/input/a", timeout: 10]) { response -> 
+        if (response.isSuccess())
+            if(logEnable) log.debug "A button was pressed"
+           
+    }
+    
+}
+
+def b() {
+    
+    httpGet([uri:"http://${restIp}:$restPORT/device/$liveID/connect?anonymous=true", timeout: 10]) { response -> 
+        if (response.isSuccess())
+            if(logEnable) log.debug "Connecting to Xbox $xboxIP"
+           
+        }
+    
+    httpGet([uri:"http://${restIp}:$restPORT/device/$liveID/input/b", timeout: 10]) { response -> 
+        if (response.isSuccess())
+            if(logEnable) log.debug "B button was pressed"
+           
+    }
+    
+}
+
+def x() {
+    
+    httpGet([uri:"http://${restIp}:$restPORT/device/$liveID/connect?anonymous=true", timeout: 10]) { response -> 
+        if (response.isSuccess())
+            if(logEnable) log.debug "Connecting to Xbox $xboxIP"
+           
+        }
+    
+    httpGet([uri:"http://${restIp}:$restPORT/device/$liveID/input/x", timeout: 10]) { response -> 
+        if (response.isSuccess())
+            if(logEnable) log.debug "X button was pressed"
+           
+    }
+    
+}
+
+def y() {
+    
+    httpGet([uri:"http://${restIp}:$restPORT/device/$liveID/connect?anonymous=true", timeout: 10]) { response -> 
+        if (response.isSuccess())
+            if(logEnable) log.debug "Connecting to Xbox $xboxIP"
+           
+        }
+    
+    httpGet([uri:"http://${restIp}:$restPORT/device/$liveID/input/y", timeout: 10]) { response -> 
+        if (response.isSuccess())
+            if(logEnable) log.debug "Y button was pressed"
+           
+    }
+    
+}
+
+def dpad_up() {
+    
+    httpGet([uri:"http://${restIp}:$restPORT/device/$liveID/connect?anonymous=true", timeout: 10]) { response -> 
+        if (response.isSuccess())
+            if(logEnable) log.debug "Connecting to Xbox $xboxIP"
+           
+        }
+    
+    httpGet([uri:"http://${restIp}:$restPORT/device/$liveID/input/dpad_up", timeout: 10]) { response -> 
+        if (response.isSuccess())
+            if(logEnable) log.debug "Dpad_Up button was pressed"
+           
+    }
+    
+}
+
+def dpad_down() {
+    
+    httpGet([uri:"http://${restIp}:$restPORT/device/$liveID/connect?anonymous=true", timeout: 10]) { response -> 
+        if (response.isSuccess())
+            if(logEnable) log.debug "Connecting to Xbox $xboxIP"
+           
+        }
+    
+    httpGet([uri:"http://${restIp}:$restPORT/device/$liveID/input/dpad_down", timeout: 10]) { response -> 
+        if (response.isSuccess())
+            if(logEnable) log.debug "dpad_down button was pressed"
+           
+    }
+    
+}
+
+def dpad_left() {
+    
+    httpGet([uri:"http://${restIp}:$restPORT/device/$liveID/connect?anonymous=true", timeout: 10]) { response -> 
+        if (response.isSuccess())
+            if(logEnable) log.debug "Connecting to Xbox $xboxIP"
+           
+        }
+    
+    httpGet([uri:"http://${restIp}:$restPORT/device/$liveID/input/dpad_left", timeout: 10]) { response -> 
+        if (response.isSuccess())
+            if(logEnable) log.debug "dpad_left button was pressed"
+           
+    }
+    
+}
+
+def dpad_right() {
+    
+    httpGet([uri:"http://${restIp}:$restPORT/device/$liveID/connect?anonymous=true", timeout: 10]) { response -> 
+        if (response.isSuccess())
+            if(logEnable) log.debug "Connecting to Xbox $xboxIP"
+           
+        }
+    
+    httpGet([uri:"http://${restIp}:$restPORT/device/$liveID/input/dpad_right", timeout: 10]) { response -> 
+        if (response.isSuccess())
+            if(logEnable) log.debug "dpad_right button was pressed"
+           
+    }
+    
+}
+
+def left_shoulder() {
+    
+    httpGet([uri:"http://${restIp}:$restPORT/device/$liveID/connect?anonymous=true", timeout: 10]) { response -> 
+        if (response.isSuccess())
+            if(logEnable) log.debug "Connecting to Xbox $xboxIP"
+           
+        }
+    
+    httpGet([uri:"http://${restIp}:$restPORT/device/$liveID/input/left_shoulder", timeout: 10]) { response -> 
+        if (response.isSuccess())
+            if(logEnable) log.debug "left_shoulder button was pressed"
+           
+    }
+    
+}
+
+def right_shoulder() {
+    
+    httpGet([uri:"http://${restIp}:$restPORT/device/$liveID/connect?anonymous=true", timeout: 10]) { response -> 
+        if (response.isSuccess())
+            if(logEnable) log.debug "Connecting to Xbox $xboxIP"
+           
+        }
+    
+    httpGet([uri:"http://${restIp}:$restPORT/device/$liveID/input/right_shoulder", timeout: 10]) { response -> 
+        if (response.isSuccess())
+            if(logEnable) log.debug "right_shoulder button was pressed"
+           
+    }
+  
+}
+
+def left_thumbstick() {
+    
+    httpGet([uri:"http://${restIp}:$restPORT/device/$liveID/connect?anonymous=true", timeout: 10]) { response -> 
+        if (response.isSuccess())
+            if(logEnable) log.debug "Connecting to Xbox $xboxIP"
+           
+        }
+    
+    httpGet([uri:"http://${restIp}:$restPORT/device/$liveID/input/left_thumbstick", timeout: 10]) { response -> 
+        if (response.isSuccess())
+            if(logEnable) log.debug "left_thumbstick button was pressed"
+           
+    }
+  
+}
+
+def right_thumbstick() {
+    
+    httpGet([uri:"http://${restIp}:$restPORT/device/$liveID/connect?anonymous=true", timeout: 10]) { response -> 
+        if (response.isSuccess())
+            if(logEnable) log.debug "Connecting to Xbox $xboxIP"
+           
+        }
+    
+    httpGet([uri:"http://${restIp}:$restPORT/device/$liveID/input/right_thumbstick", timeout: 10]) { response -> 
+        if (response.isSuccess())
+            if(logEnable) log.debug "right_thumbstick button was pressed"
+           
+    }
+  
 }
