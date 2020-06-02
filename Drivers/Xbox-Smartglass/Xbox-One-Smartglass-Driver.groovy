@@ -2,11 +2,17 @@
  * Name: Xbox One Smartglass Driver
  * Version: 1.0
  * Author: Mike Fenton
- * Download: https://github.com/dmike3/Hubitat/blob/master/Drivers/Xbox-Smartglass/Xbox-One-Smartglass-Driver.groovy
- * Xbox One Smartglass REST API: https://github.com/openxbox/xbox-smartglass-core-python
+ * 
  * Description: Xbox One Smartglass Intergration. The driver interfaces with the Xbox Smartglass Project giving 
  * local control of your Xbox One.
- * Features: Powering On, POwering Off, Polling for state changes, sending controller button presses
+ *
+ * Features: Powering On, Powering Off, Polling for state changes, sending controller button presses
+ *
+ * Download Links:
+ *
+ * Driver: https://github.com/dmike3/Hubitat/blob/master/Drivers/Xbox-Smartglass/Xbox-One-Smartglass-Driver.groovy
+ * Xbox One Smartglass Project: https://github.com/openxbox/xbox-smartglass-core-python
+ *
  *-------------------------------------------------------------------------------------------------------------------
  * Copyright 2020 Mike Fenton
  * 
