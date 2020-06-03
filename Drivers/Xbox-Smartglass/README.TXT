@@ -1,11 +1,20 @@
+____  ______.                 
+\   \/  /\_ |__   _______  ___
+ \     /  | __ \ /  _ \  \/  /
+ /     \  | \_\ (  <_> >    < 
+/___/\  \ |___  /\____/__/\_ \
+      \_/     \/            \/
+
+                -  Smartglass
+
  *** GENERAL ***
  
  This driver works with the Xbox Smartglass project which gives local control of your Xbox One.
  
- You need to first setup and configure the Xbox Smartglass REST server and confirm working before setting up the Hubitat driver. 
+ You need to first setup and configure the Xbox Smartglass REST server before setting up the Hubitat driver. 
  The installation guide can be found on the project site. https://pypi.org/project/xbox-smartglass-core/
  
- After completing and confirming the REST server is working. You will add the driver to your driver codes section of Hubitat.
+ After completing and confirming the REST server is working, follow the instructions below.
  
  *** PREREQUISITES: ***
  
@@ -25,10 +34,10 @@
      
 *** EXAMPLES/IDEAS: ***
  
-You can initiate a manual refresh if needed. You can do this using a RM rule. Remember to choose custom attribute and select refresh.
-This will force a check if the Xbox One is online or not if you don't want to wait for refresh schedule.
+A manual refresh can be done by using a RM rule. Remember to choose a custom attribute and select refresh.
+This will force a check to see if your Xbox One is online.
 
-Obviouse use case, would be to include this in one of your app schedules. Possibly a bedtime routine or an occupany routine?
+An obvious use case would be to include this in one of your app schedules. Possibly a bedtime routine or an occupany routine?
 
 *** SUPPORT: ***
  
