@@ -41,5 +41,9 @@ An obvious use case would be to include this in one of your app schedules. Possi
 *** SUPPORT: ***
  
 You can find me under the Hubitat forums if you have any questions.
+
+*** Donation: ***
+
+URL: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=7TFJDAWDBTJL2&currency_code=USD&source=url
  
  
