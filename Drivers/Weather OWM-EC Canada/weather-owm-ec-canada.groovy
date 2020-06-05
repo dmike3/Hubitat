@@ -323,7 +323,7 @@ def ow() {
 
 def ec() {
    
-     updateDataValue("alert", "")
+     updateDataValue("alert", "No watches or warnings in effect.")
  
         httpGet([uri:"${rssFeed}"], { response ->
         
