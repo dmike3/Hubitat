@@ -1,6 +1,6 @@
 {
   "packageName": "Xbox One Smartglass Driver",
-  "author": "Mike Fenton",
+  "author": "n3!",
   "documentationLink": "https://github.com/dmike3/Hubitat/blob/master/Drivers/Xbox-Smartglass/README.TXT",
   "version": "1.0",
   "minimumHEVersion": "2.2.0",
