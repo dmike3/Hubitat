@@ -329,6 +329,10 @@ def ec() {
         
         alertPoll = response.data.entry.summary[0]
             if(logEnable) log.debug "Polled Weather Alert Information: $alertPoll"
+            
+            if(!alertPoll) {
+                alertPoll = "Unavailable"
+            }
   
     })
     
