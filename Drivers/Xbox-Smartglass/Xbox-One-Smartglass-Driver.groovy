@@ -23,7 +23,7 @@
  *
  * README: https://github.com/dmike3/Hubitat/blob/master/Drivers/Xbox-Smartglass/README.TXT
  *-------------------------------------------------------------------------------------------------------------------
- * Copyright 2020 Mike Fenton
+ * Copyright 2020 n3! development
  * 
  * The following software is to be used "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express 
  * or implied. 
