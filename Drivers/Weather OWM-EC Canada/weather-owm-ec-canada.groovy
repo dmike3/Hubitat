@@ -322,9 +322,7 @@ def ow() {
 // Polls Weather Environment Canada Alert Information
 
 def ec() {
-   
-     updateDataValue("alert", "No watches or warnings in effect.")
- 
+
         httpGet([uri:"${rssFeed}"], { response ->
         
         alertPoll = response.data.entry.summary[0]
