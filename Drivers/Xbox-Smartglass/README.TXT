@@ -28,7 +28,7 @@
  4.) Create a new driver with a name of your choice "Xbox One X" and select the driver "Xbox Smartglass Driver". Click Save.
  5.) Now fill in the paramaters to match your devices.
  6.) Consider picking a Poll Time that makes sense. This will make calls to your REST server to check if the Xbox is on.
-     This is required so it can track state changes if you turn the Xbox on by hand. 
+     This is required so it can track state changes if you turn the Xbox on or off by hand. 
      
      
 *** EXAMPLES/IDEAS: ***
