@@ -23,7 +23,7 @@
  3.) Save the driver and go to your drivers section under Hubitat.
  4.) Create a new driver with a name of your choice "Weather" and select the driver "weather-owm-ec-canada". Click Save.
  5.) Now fill in the paramaters to match your devices.
- 6.) Consider picking a Poll Time that makes sense. This will make calls to both OW and EC for weather information.
+ 6.) Consider picking a poll time that makes sense. This will make calls to both OW and EC for weather information.
          
 *** EXAMPLE/USE CASES ***
 
