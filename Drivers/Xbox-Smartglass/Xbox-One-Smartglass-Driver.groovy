@@ -9,7 +9,7 @@
  *
  * Name: Xbox One Smartglass Driver
  * Version: 1.0
- * Author: n3! development
+ * Author: n3!
  * 
  * Description: Xbox One Smartglass Intergration. The driver interfaces with the Xbox Smartglass Project giving 
  * local control of your Xbox One.
