@@ -31,7 +31,9 @@
 import groovy.transform.Field
 
 @Field static List timeOptions = [
-
+    
+    "5 Minutes",
+    "10 Minutes",
     "15 Minutes",
     "30 Minutes",
     "45 Minutes",
@@ -89,6 +91,14 @@ metadata {
 def initialize(){
    
     getWeather()
+
+    if (pollTime == "5 Minutes") {
+        schedule("0 */15 * ? * *", getWeather)
+    }
+
+    if (pollTime == "10 Minutes") {
+        schedule("0 */15 * ? * *", getWeather)
+    }
     
     if (pollTime == "15 Minutes") {
         schedule("0 */15 * ? * *", getWeather)
