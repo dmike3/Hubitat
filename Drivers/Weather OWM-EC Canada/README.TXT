@@ -27,9 +27,10 @@
          
 *** EXAMPLE/USE CASES ***
 
-- Alert based off a weather alert. If it contains or doesn't contain a string, notifiy via pushover and/or TTS.
+- Alert based off a weather alert. If it contains or doesn't contain certain info in string, notifiy via pushover and/or TTS.
 - Alert based off of temperature. If it exceeds a certain threshold, notifiy via pushover and/or TTS.
 - Alert based off wind speed. If the wind exceeds a certain threshold, notifiy via pushover and/or TTS.
+- Alert based off snow or rain. If it contains rain or snow in string, notifiy via pushover and/or TTS.
 
 *** SUPPORT: ***
  
