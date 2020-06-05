@@ -14,7 +14,7 @@
  
  1.) OpenWeatherMap API Key (Free) 
  2.) Alert RSS URL to your city via Environment Weather Canada (https://weather.gc.ca/). After picking your city, scroll down and select
-     the RSS icon. Select the Alert RSS feed. Copy this URL and paste it into the correct paramater under the driver.
+     the RSS icon. Select the Alert RSS feed. Copy this URL and paste it into "EC Weather Alert RSS Feed" paramater under the driver.
  
  *** INSTALLATION: ***
  
@@ -25,6 +25,12 @@
  5.) Now fill in the paramaters to match your devices.
  6.) Consider picking a Poll Time that makes sense. This will make calls to both OW and EC for weather information.
          
+*** EXAMPLE/USE CASES ***
+
+- Alert based off a weather alert. If it contains or doesn't contain a string, notifiy via pushover and/or TTS.
+- Alert based off of temperature. If it exceeds a certain threshold, notifiy via pushover and/or TTS.
+- Alert based off wind speed. If the wind exceeds a certain threshold, notifiy via pushover and/or TTS.
+
 *** SUPPORT: ***
  
 You can find me under the Hubitat forums if you have any questions.
