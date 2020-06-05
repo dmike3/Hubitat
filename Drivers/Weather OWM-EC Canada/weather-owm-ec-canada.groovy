@@ -174,59 +174,143 @@ def ow() {
     httpGet([uri:"http://api.openweathermap.org/data/2.5/weather?lat=$lat&lon=$lon&appid=$owmAPI&units=$unitsParsed"], { response ->
          
         
+        // City
+        
         cityPoll = response.data.name
+        
+        if(!cityPoll) {
+            cityPoll = "Unavailable"
+        }
+                
         updateDataValue("city", "$cityPoll")
         sendEvent(name: "city", value: cityPoll)
 
+        // Summary 
+        
         summaryPoll = response.data.weather.description
+        
+        if(!summaryPoll) {
+            summaryPoll = "Unavailable"
+        }
+            
         updateDataValue("summary", "$summaryPoll")
         sendEvent(name: "summary", value: summaryPoll)
         
+        // Temperature
+        
+        
         tempPoll = response.data.main.temp
+        
+        if(!tempPoll) {
+            tempPoll = "Unavailable"
+        }
         updateDataValue("temperature", "$tempPoll")
         sendEvent(name: "temperature", value: tempPoll)
         
+        // Feels Like
+        
         feelsLikePoll = response.data.main.feels_like
+        
+        if(!feelsLikePoll) {
+             feelsLikePoll = 0
+        }
+        
         updateDataValue("feels_like", "$feelsLikePoll")
         sendEvent(name: "feels_like", value: feelsLikePoll)
         
+        // Temp Min
+        
         tempMinPoll = response.data.main.temp_min
+        
+        if(!tempMinPoll) {
+             tempMinPoll = 0   
+        }
+        
         updateDataValue("temp_min", "$tempMinPoll")
         sendEvent(name: "temp_min", value: tempMinPoll)
         
+        // Temp Max
+        
         tempMaxPoll = response.data.main.temp_max
+        
+        if(!tempMaxPoll) {
+             tempMaxPoll = 0   
+        }
+        
         updateDataValue("temp_max", "$tempMaxPoll")
         sendEvent(name: "temp_max", value: tempMaxPoll)
         
-        tempMaxPoll = response.data.main.temp_max
-        updateDataValue("temp_max", "$tempMaxPoll")
-        sendEvent(name: "temp_max", value: tempMaxPoll)
+        // Pressure
         
         pressurePoll = response.data.main.pressure
+        
+        if(!pressurePoll) {
+             pressurePoll = 0   
+        }
+        
         updateDataValue("pressure", "$pressurePoll")
         sendEvent(name: "pressure", value: pressurePoll)
         
+        // Humidity
+        
         humidityPoll = response.data.main.humidity
+        
+        if(!humidityPoll) {
+             humidityPoll = 0   
+        }
+          
         updateDataValue("humidity", "$humidityPoll")
         sendEvent(name: "humidity", value: humidityPoll)
         
+        // Visibility
+        
         visibilityPoll = response.data.visibility
+        
+        if(!visibilityPoll) {
+             visibilityPoll = 0   
+        }
+        
         updateDataValue("visibility", "$visibilityPoll")
         sendEvent(name: "visibility", value: visibilityPoll)
         
+        // Wind Speed
+        
         windSpeedPoll = response.data.wind.speed
+        if(!windSpeedPoll) {
+            windSpeedPoll = 0   
+        }
+        
         updateDataValue("windSpeed", "$windSpeedPoll")
         sendEvent(name: "windSpeed", value: windSpeedPoll)
         
+        // Wind Direction
+        
         windDirectionPoll = response.data.wind.deg
+        
+        if(!windDirectionPoll) {
+             windDirectionPoll = 0   
+        }
+        
         updateDataValue("windDirection", "$windDirectionPoll")
         sendEvent(name: "windDirection", value: windDirectionPoll)
         
+        // Clouds
+        
         cloudsPoll = response.data.clouds.all
+        
+        if(!cloudsPoll) {
+             cloudsPoll = 0   
+        }
         updateDataValue("clouds", "$cloudsPoll")
         sendEvent(name: "clouds", value: cloudsPoll)
         
+        // Country Poll
+        
         countryPoll = response.data.sys.country
+        
+        if(!countryPoll) {
+             countryPoll = "Unavailable"   
+        }
         updateDataValue("country", "$countryPoll")
         sendEvent(name: "country", value: countryPoll)
   
