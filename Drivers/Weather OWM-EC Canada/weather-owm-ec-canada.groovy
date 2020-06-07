@@ -83,6 +83,9 @@ metadata {
     attribute "country", "string"
     attribute "sunRise", "string"
     attribute "sunSet", "string"
+    attribute "rainDay1", "number"
+    attribute "rainDay2", "number"
+    attribute "rainDay3", "number"
        
     }
 }
@@ -91,13 +94,13 @@ metadata {
 def initialize(){
    
     getWeather()
-
+    
     if (pollTime == "5 Minutes") {
-        schedule("0 */15 * ? * *", getWeather)
+        schedule("0 */5 * ? * *", getWeather)
     }
-
+    
     if (pollTime == "10 Minutes") {
-        schedule("0 */15 * ? * *", getWeather)
+        schedule("0 */10 * ? * *", getWeather)
     }
     
     if (pollTime == "15 Minutes") {
@@ -324,6 +327,42 @@ def ow() {
         updateDataValue("country", "$countryPoll")
         sendEvent(name: "country", value: countryPoll)
   
+    })
+    
+
+    
+    httpGet([uri:"https://api.openweathermap.org/data/2.5/onecall?lat=$lat&lon=$lon&exclude=current,minutely,hourly&appid=$owmAPI&units=$unitsParsed"], { response ->
+        
+        // Rain Day 1
+        
+        rainDay1Poll = response.data.daily.rain[0]
+        
+        if(!rainDay1Poll) {
+            rainDay1Poll = 0
+        }
+        updateDataValue("rainDay1", "$rainDay1Poll")
+        sendEvent(name: "rainDay1", value: rainDay1Poll)
+        
+        // Rain Day 2
+        
+        rainDay2Poll = response.data.daily.rain[1]
+        
+        if(!rainDay2Poll) {
+            rainDay2Poll = 0
+        }
+        updateDataValue("rainDay2", "$rainDay2Poll")
+        sendEvent(name: "rainDay2", value: rainDay2Poll)
+        
+        // Rain Day 3
+        
+        rainDay3Poll = response.data.daily.rain[2]
+        
+        if(!rainDay3Poll) {
+            rainDay3Poll = 0
+        }
+        updateDataValue("rainDay3", "$rainDay3Poll")
+        sendEvent(name: "rainDay3", value: rainDay3Poll)
+        
     })
     
 }
