@@ -378,16 +378,32 @@ def ec() {
         httpGet([uri:"${rssFeed}"], { response ->
         
         alertPoll = response.data.entry.summary[0]
-            if(logEnable) log.debug "Polled Weather Alert Information: $alertPoll"
-            
+        
+                      
             if(!alertPoll) {
-                alertPoll = "Unavailable"
+                alertPoll = "No watches or warnings in effect."
             }
+            
+            if(alertPoll == "No watches or warnings in effect.") {
+                
+                sendEvent(name: "alert", value: alertPoll)
+                updateDataValue("alert", "$alertPoll")
+                if(logEnable) log.debug "No watches or warnings in effect."
+                
+                
+            }
+            else {
+                
+                getTitle = response.data.entry.title[0]
+                getSummary = response.data.entry.summary[0]
+                result = "$getTitle. $getSummary"
+                sendEvent(name: "alert", value: result)
+                updateDataValue("alert", "$result")
+                if(logEnable) log.debug "Weather Alert Announcement! $result"
+                
+                
+            }
+                
   
-    })
-    
-    updateDataValue("alert", "$alertPoll")
-    sendEvent(name: "alert", value: alertPoll)
-   
-    
+    })  
 }
