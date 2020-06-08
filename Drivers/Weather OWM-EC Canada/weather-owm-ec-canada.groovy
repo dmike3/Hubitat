@@ -389,8 +389,7 @@ def ec() {
                 sendEvent(name: "alert", value: alertPoll)
                 updateDataValue("alert", "$alertPoll")
                 if(logEnable) log.debug "No watches or warnings in effect."
-                
-                
+     
             }
             else {
                 
@@ -400,10 +399,9 @@ def ec() {
                 sendEvent(name: "alert", value: result)
                 updateDataValue("alert", "$result")
                 if(logEnable) log.debug "Weather Alert Announcement! $result"
-                
-                
+     
             }
-                
-  
-    })  
+
+    })
+    
 }
