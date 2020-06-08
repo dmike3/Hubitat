@@ -8,7 +8,7 @@
  *          - development
  *
  * Name: Weather OWM-EC Canada
- * Version: 1.0.0 (Beta)
+ * Version: 1.0.0 (Alpha)
  * Author: n3!
  * 
  * Description: Polls weather information from OpenWeatherMap and Weather Environment Canada (Alert RSS Feed - https://weather.gc.ca/).
@@ -158,11 +158,9 @@ def getWeather() {
     log.info "Polling Weather"
     
     // State Variables
-    
-    state.Application = 'Weather OWM-EC Canada'
-    state.Version = '1.0'
-    state.Author = "n3! development"
-    
+
+    state.Version = '1.0.0 (Alpha)'
+  
     // Parse Units
 
     if(units == "Celsius") {
