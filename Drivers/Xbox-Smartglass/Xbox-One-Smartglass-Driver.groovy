@@ -9,7 +9,7 @@
  *
  * Name: Xbox One Smartglass Driver
  * Version: 1.0
- * Author: n3!
+ * Author: Mike Fenton
  * 
  * Description: Xbox One Smartglass Intergration. The driver interfaces with the Xbox Smartglass Project giving 
  * local control of your Xbox One.
@@ -23,7 +23,7 @@
  *
  * README: https://github.com/dmike3/Hubitat/blob/master/Drivers/Xbox-Smartglass/README.TXT
  *-------------------------------------------------------------------------------------------------------------------
- * Copyright 2020 n3! development
+ * Copyright 2020 Mike Fenton
  * 
  * The following software is to be used "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express 
  * or implied. 
@@ -57,13 +57,18 @@ preferences {
 
 metadata {
 
-    definition (name: "Xbox One Smartglass Driver", namespace: "n3!", author: "Mike Fenton", importUrl: "https://raw.githubusercontent.com/dmike3/Hubitat/master/Drivers/Xbox-Smartglass/Xbox-One-Smartglass-Driver.groovy") {
-    capability "Initialize"
-    capability "Switch"
-    capability "Refresh"
+    definition (
+        name: "Xbox One Smartglass - Child",
+        namespace: "Xbox One Smartglass",
+        author: "n3! development",
+        importUrl: "https://raw.githubusercontent.com/dmike3/Hubitat/master/Drivers/Xbox-Smartglass/Xbox-One-Smartglass-Driver.groovy") {
+               
+            capability "Initialize"
+            capability "Switch"
+            capability "Refresh"
         
+        }
     }
-}
 
 
 def initialize(){
