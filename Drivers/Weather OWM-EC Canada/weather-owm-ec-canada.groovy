@@ -62,30 +62,35 @@ preferences {
 }
 
 metadata {
-    
-    definition (name: "Weather OWM-EC Canada", namespace: "n3!", author: "Mike Fenton", importUrl: "") {
-    capability "Refresh"
-    capability "Initialize"
-    capability "Temperature Measurement"
-    capability "RelativeHumidityMeasurement"
-    capability "Pressure Measurement"
+      
+   definition (
+   name: "Weather OWM-EC Canada",
+   namespace: "n3!dev",
+   author: "n3! development",
+   importUrl: "https://github.com/dmike3/Hubitat/blob/master/Drivers/Weather%20OWM-EC%20Canada/weather-owm-ec-canada.groovy") {
+        
+   capability "Refresh"
+   capability "Initialize"
+   capability "Temperature Measurement"
+   capability "RelativeHumidityMeasurement"
+   capability "Pressure Measurement"
 
-    attribute "alert", "string"
-    attribute "city", "string"
-    attribute "summary", "string"
-    attribute "feels_like", "number"
-    attribute "temp_min", "number"
-    attribute "temp_max", "number"
-    attribute "windSpeed", "number"
-    attribute "windDirection", "number"
-    attribute "visibility", "number"
-    attribute "clouds", "number"
-    attribute "country", "string"
-    attribute "sunRise", "string"
-    attribute "sunSet", "string"
-    attribute "rainDay1", "number"
-    attribute "rainDay2", "number"
-    attribute "rainDay3", "number"
+   attribute "alert", "string"
+   attribute "city", "string"
+   attribute "summary", "string"
+   attribute "feels_like", "number"
+   attribute "temp_min", "number"
+   attribute "temp_max", "number"
+   attribute "windSpeed", "number"
+   attribute "windDirection", "number"
+   attribute "visibility", "number"
+   attribute "clouds", "number"
+   attribute "country", "string"
+   attribute "sunRise", "string"
+   attribute "sunSet", "string"
+   attribute "rainDay1", "number"
+   attribute "rainDay2", "number"
+   attribute "rainDay3", "number"
        
     }
 }
