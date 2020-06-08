@@ -59,7 +59,7 @@ metadata {
 
     definition (
         name: "Xbox One Smartglass Driver",
-        namespace: "n3!dev",
+        namespace: "n3!",
         author: "n3! development",
         importUrl: "https://raw.githubusercontent.com/dmike3/Hubitat/master/Drivers/Xbox-Smartglass/Xbox-One-Smartglass-Driver.groovy") {
                
