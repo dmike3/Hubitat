@@ -8,7 +8,7 @@
  *          - development
  *
  * Name: Weather OWM-EC Canada
- * Version: 1.0 (Beta)
+ * Version: 1.0.0 (Beta)
  * Author: n3!
  * 
  * Description: Polls weather information from OpenWeatherMap and Weather Environment Canada (Alert RSS Feed - https://weather.gc.ca/).
@@ -88,9 +88,9 @@ metadata {
    attribute "country", "string"
    attribute "sunRise", "string"
    attribute "sunSet", "string"
-   attribute "rainDay1", "number"
-   attribute "rainDay2", "number"
-   attribute "rainDay3", "number"
+   attribute "rainToday", "number"
+   attribute "rainTomorrow", "number"
+   attribute "rainAfterTomorrow", "number"
        
     }
 }
@@ -338,35 +338,35 @@ def ow() {
     
     httpGet([uri:"https://api.openweathermap.org/data/2.5/onecall?lat=$lat&lon=$lon&exclude=current,minutely,hourly&appid=$owmAPI&units=$unitsParsed"], { response ->
         
-        // Rain Day 1
+        // Rain Today
         
-        rainDay1Poll = response.data.daily.rain[0]
+        rainTodayPoll = response.data.daily.rain[0]
         
-        if(!rainDay1Poll) {
-            rainDay1Poll = 0
+        if(!rainTodayPoll) {
+            rainTodayPoll = 0
         }
-        updateDataValue("rainDay1", "$rainDay1Poll")
-        sendEvent(name: "rainDay1", value: rainDay1Poll)
+        updateDataValue("rainToday", "$rainTodayPoll")
+        sendEvent(name: "rainToday", value: rainTodayPoll)
         
-        // Rain Day 2
+        // Rain Tomorrow
         
-        rainDay2Poll = response.data.daily.rain[1]
+        rainTomorrowPoll = response.data.daily.rain[1]
         
-        if(!rainDay2Poll) {
-            rainDay2Poll = 0
+        if(!rainTomorrowPoll) {
+            rainTomorrowPoll = 0
         }
-        updateDataValue("rainDay2", "$rainDay2Poll")
-        sendEvent(name: "rainDay2", value: rainDay2Poll)
+        updateDataValue("rainTomorrow", "$rainTomorrowPoll")
+        sendEvent(name: "rainTomorrow", value: rainTomorrowPoll)
         
-        // Rain Day 3
+        // Rain AfterTomorrow
         
-        rainDay3Poll = response.data.daily.rain[2]
+        rainAfterTomorrowPoll = response.data.daily.rain[2]
         
-        if(!rainDay3Poll) {
-            rainDay3Poll = 0
+        if(!rainAfterTomorrowPoll) {
+            rainAfterTomorrowPoll = 0
         }
-        updateDataValue("rainDay3", "$rainDay3Poll")
-        sendEvent(name: "rainDay3", value: rainDay3Poll)
+        updateDataValue("rainAfterTomorrow", "$rainAfterTomorrowPoll")
+        sendEvent(name: "rainAfterTomorrow", value: rainAfterTomorrowPoll)
         
     })
     
