@@ -65,7 +65,7 @@ metadata {
       
    definition (
    name: "Weather OWM-EC Canada",
-   namespace: "n3!dev",
+   namespace: "n3!",
    author: "n3! development",
    importUrl: "https://github.com/dmike3/Hubitat/blob/master/Drivers/Weather%20OWM-EC%20Canada/weather-owm-ec-canada.groovy") {
         
