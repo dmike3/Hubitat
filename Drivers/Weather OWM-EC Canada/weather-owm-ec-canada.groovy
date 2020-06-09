@@ -97,7 +97,8 @@ metadata {
    attribute "tempToday", "number"
    attribute "tempToday_min", "number"
    attribute "tempToday_max", "number"
-       
+   attribute "dewPoint", "number"
+          
    }
 }
 
@@ -335,11 +336,11 @@ def ow() {
         }
         updateDataValue("country", "$countryPoll")
         sendEvent(name: "country", value: countryPoll)
-  
+        
     })
     
 
-    // OWM Daily Poll
+    // OWM One Call API
     
     httpGet([uri:"https://api.openweathermap.org/data/2.5/onecall?lat=$lat&lon=$lon&exclude=current,minutely,hourly&appid=$owmAPI&units=$unitsParsed"], { response ->
         
@@ -433,6 +434,16 @@ def ow() {
         }
         updateDataValue("tempToday_max", "$tempToday_maxPoll")
         sendEvent(name: "tempToday_max", value: tempToday_maxPoll)
+        
+        // Dewpoint Daily
+        
+        dewPointPoll = response.data.daily.dew_point[0]
+        
+        if(!dewPointPoll) {
+            dewPointPoll = 0
+        }
+        updateDataValue("dewPoint", "$dewPointPoll")
+        sendEvent(name: "dewPoint", value: dewPointPoll)
         
     })
     
