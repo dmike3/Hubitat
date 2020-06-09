@@ -92,8 +92,8 @@ metadata {
    attribute "rainTomorrow", "number"
    attribute "rainAfterTomorrow", "number"
    attribute "tempToday", "number"
-   attribute "tempTodayMin", "number"
-   attribute "tempTodayMax", "number"
+   attribute "tempToday_min", "number"
+   attribute "tempToday_max", "number"
        
    }
 }
@@ -382,23 +382,23 @@ def ow() {
     
        // Temp Today Min
         
-        tempTodayMinPoll = response.data.daily.temp.min[0]
+        tempToday_minPoll = response.data.daily.temp.min[0]
         
-        if(!tempTodayMinPoll) {
-            tempTodayMinPoll = 0
+        if(!tempToday_minPoll) {
+            tempToday_minPoll = 0
         }
-        updateDataValue("tempTodayMin", "$tempTodayMinPoll")
-        sendEvent(name: "tempTodayMin", value: tempTodayMinPoll)
+        updateDataValue("tempToday_Min", "$tempTodayMinPoll")
+        sendEvent(name: "tempToday_Min", value: tempTodayMinPoll)
         
        // Temp Today Max
         
-        tempTodayMaxPoll = response.data.daily.temp.max[0]
+        tempToday_maxPoll = response.data.daily.temp.max[0]
         
-        if(!tempTodayMaxPoll) {
-            tempTodayMaxPoll = 0
+        if(!tempToday_maxPoll) {
+            tempToday_maxPoll = 0
         }
-        updateDataValue("tempTodayMax", "$tempTodayMaxPoll")
-        sendEvent(name: "tempTodayMax", value: tempTodayMaxPoll)
+        updateDataValue("tempToday_max", "$tempToday_maxPoll")
+        sendEvent(name: "tempToday_max", value: tempToday_maxPoll)
         
     })
     
