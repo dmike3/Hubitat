@@ -91,8 +91,11 @@ metadata {
    attribute "rainToday", "number"
    attribute "rainTomorrow", "number"
    attribute "rainAfterTomorrow", "number"
+   attribute "tempToday", "number"
+   attribute "tempTodayMin", "number"
+   attribute "tempTodayMax", "number"
        
-    }
+   }
 }
 
 
@@ -366,7 +369,39 @@ def ow() {
         updateDataValue("rainAfterTomorrow", "$rainAfterTomorrowPoll")
         sendEvent(name: "rainAfterTomorrow", value: rainAfterTomorrowPoll)
         
+        // Temp Today
+        
+        tempTodayPoll = response.data.daily.temp.day[0]
+        
+        if(!tempTodayPoll) {
+            tempTodayPoll = 0
+        }
+        updateDataValue("tempToday", "$tempTodayPoll")
+        sendEvent(name: "tempToday", value: tempTodayPoll)
+        
+    
+       // Temp Today Min
+        
+        tempTodayMinPoll = response.data.daily.temp.min[0]
+        
+        if(!tempTodayMinPoll) {
+            tempTodayMinPoll = 0
+        }
+        updateDataValue("tempTodayMin", "$tempTodayMinPoll")
+        sendEvent(name: "tempTodayMin", value: tempTodayMinPoll)
+        
+       // Temp Today Max
+        
+        tempTodayMaxPoll = response.data.daily.temp.max[0]
+        
+        if(!tempTodayMaxPoll) {
+            tempTodayMaxPoll = 0
+        }
+        updateDataValue("tempTodayMax", "$tempTodayMaxPoll")
+        sendEvent(name: "tempTodayMax", value: tempTodayMaxPoll)
+        
     })
+    
     
 }
 
@@ -403,5 +438,5 @@ def ec() {
             }
 
     })
-   
+    
 }
