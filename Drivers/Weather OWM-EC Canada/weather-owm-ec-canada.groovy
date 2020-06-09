@@ -91,6 +91,9 @@ metadata {
    attribute "rainToday", "number"
    attribute "rainTomorrow", "number"
    attribute "rainAfterTomorrow", "number"
+   attribute "snowToday", "number"
+   attribute "snowTomorrow", "number"
+   attribute "snowAfterTomorrow", "number"
    attribute "tempToday", "number"
    attribute "tempToday_min", "number"
    attribute "tempToday_max", "number"
@@ -336,6 +339,7 @@ def ow() {
     })
     
 
+    // OWM Daily Poll
     
     httpGet([uri:"https://api.openweathermap.org/data/2.5/onecall?lat=$lat&lon=$lon&exclude=current,minutely,hourly&appid=$owmAPI&units=$unitsParsed"], { response ->
         
@@ -369,6 +373,36 @@ def ow() {
         updateDataValue("rainAfterTomorrow", "$rainAfterTomorrowPoll")
         sendEvent(name: "rainAfterTomorrow", value: rainAfterTomorrowPoll)
         
+        // Snow Today
+        
+        snowTodayPoll = response.data.daily.snow[0]
+        
+        if(!snowTodayPoll) {
+            snowTodayPoll = 0
+        }
+        updateDataValue("snowToday", "$snowTodayPoll")
+        sendEvent(name: "snowToday", value: snowTodayPoll)
+        
+        // Snow Tomorrow
+        
+        snowTomorrowPoll = response.data.daily.snow[0]
+        
+        if(!snowTomorrowPoll) {
+            snowTomorrowPoll = 0
+        }
+        updateDataValue("snowTomorrow", "$snowTomorrowPoll")
+        sendEvent(name: "snowTomorrow", value: snowTomorrowPoll)
+        
+        // Snow After Tomorrow
+        
+        snowAfterTomorrowPoll = response.data.daily.snow[0]
+        
+        if(!snowAfterTomorrowPoll) {
+            snowAfterTomorrowPoll = 0
+        }
+        updateDataValue("snowAfterTomorrow", "$snowAfterTomorrowPoll")
+        sendEvent(name: "snowAfterTomorrow", value: snowAfterTomorrowPoll)
+        
         // Temp Today
         
         tempTodayPoll = response.data.daily.temp.day[0]
@@ -387,8 +421,8 @@ def ow() {
         if(!tempToday_minPoll) {
             tempToday_minPoll = 0
         }
-        updateDataValue("tempToday_Min", "$tempTodayMinPoll")
-        sendEvent(name: "tempToday_Min", value: tempTodayMinPoll)
+        updateDataValue("tempToday_min", "$tempToday_minPoll")
+        sendEvent(name: "tempToday_min", value: tempToday_minPoll)
         
        // Temp Today Max
         
