@@ -15,9 +15,9 @@
  *
  * Features: Powering On, Powering Off, Polling for state changes, sending controller button presses
  *
- * Download Links:
+ * DOWNLOAD LINKS
  *
- * Driver: 
+ * Driver: https://raw.githubusercontent.com/dmike3/Hubitat/master/Drivers/Apple%20TV%20Remote/apple-tv-remote.groovy
  * 
  * Homebridge: https://homebridge.io/
  * Homebridge Apple TV Remote: https://github.com/lukasroegner/homebridge-apple-tv-remote
