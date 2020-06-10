@@ -33,7 +33,7 @@ _______  ________._.
 *** EXAMPLES/IDEAS: ***
  
 - Bedtime routine to turn off Apple TV(s).
-- Occupancy to trigger the Apple TV(s) to go off.
+- Occupancy triggers and tells your Apple TV(s) to turn off.
 - Motion Sensor detects motion, turn Apple TV ON, select an App, and start playing content.
 
 *** SUPPORT: ***
