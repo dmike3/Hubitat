@@ -20,7 +20,7 @@
  * Driver: https://raw.githubusercontent.com/dmike3/Hubitat/master/Drivers/Apple%20TV%20Remote/apple-tv-remote.groovy
  * 
  * Homebridge: https://homebridge.io/
- * Homebridge Apple TV Remote: https://github.com/lukasroegner/homebridge-apple-tv-remote
+ * Homebridge Apple TV Remote: https://www.npmjs.com/package/homebridge-apple-tv-remote
  *
  * README: 
  *-------------------------------------------------------------------------------------------------------------------
@@ -61,11 +61,13 @@ metadata {
         name: "Apple TV Remote",
         namespace: "n3!",
         author: "n3! development",
-        importUrl: "") {
+        importUrl: "https://raw.githubusercontent.com/dmike3/Hubitat/master/Drivers/Apple%20TV%20Remote/apple-tv-remote.groovy") {
                
-            capability "Initialize"
-            capability "Switch"
-            capability "Refresh"
+        capability "Initialize"
+        capability "Switch"
+        capability "Refresh"
+        
+        attribute "playing", "string"
         
         }
     }
@@ -117,11 +119,6 @@ def refresh() {
     def appleTVStatus = ""
     def currstate = device.currentState("switch").getValue()
     
-    if(currstate == null) {
-        if(logEnable) log.debug "Switch is null. Changing state to on"
-        sendEvent(name: "switch", value: "on")
-    }
-    
     // Checking Apple TV Status
     
     def params = [
@@ -133,7 +130,9 @@ def refresh() {
     try {
     httpGet(params) { response ->
         appleTVStatus = response.data.isOn
-        if(logEnable) log.debug "Debug Info: $appleTVStatus"
+        isPlaying = response.data.isPlaying
+        if(logEnable) log.debug "Apple TV Status: $appleTVStatus"
+        if(logEnable) log.debug "Playing Status: $isPlaying"
 
     } 
     } catch(Exception e) {
@@ -161,7 +160,19 @@ def refresh() {
         else {
             if(logEnable) log.debug "Skipping. $appleTV is already off"    
         }
-    }              
+    }    
+    
+    if(isPlaying) {
+        
+        updateDataValue("playing", "Currently Playing")
+        sendEvent(name: "playing", value: "Currently Playing")
+    }
+    else {
+        
+        updateDataValue("playing", "Idle")
+        sendEvent(name: "playing", value: "Idle")
+        
+    }
           
 }
 
@@ -206,7 +217,7 @@ def up() {
     
     def params = [
         uri: "http://" + hbIP + ":" + hbPORT + "/" + appleTV + "",
-        headers: ['Authorization'  : hbToken],
+        headers: ['Authorization' : hbToken],
         contentType: "application/json",
         body : '{"commands":[{"key":"up","longPress": false}]}'
     ]
@@ -225,7 +236,7 @@ def down() {
     
     def params = [
         uri: "http://" + hbIP + ":" + hbPORT + "/" + appleTV + "",
-        headers: ['Authorization'  : hbToken],
+        headers: ['Authorization' : hbToken],
         contentType: "application/json",
         body : '{"commands":[{"key":"down","longPress": false}]}'
     ]
@@ -244,7 +255,7 @@ def left() {
     
     def params = [
         uri: "http://" + hbIP + ":" + hbPORT + "/" + appleTV + "",
-        headers: ['Authorization'  : hbToken],
+        headers: ['Authorization' : hbToken],
         contentType: "application/json",
         body : '{"commands":[{"key":"left","longPress": false}]}'
     ]
@@ -263,7 +274,7 @@ def right() {
     
     def params = [
         uri: "http://" + hbIP + ":" + hbPORT + "/" + appleTV + "",
-        headers: ['Authorization'  : hbToken],
+        headers: ['Authorization' : hbToken],
         contentType: "application/json",
         body : '{"commands":[{"key":"right","longPress": false}]}'
     ]
@@ -282,7 +293,7 @@ def menu() {
     
     def params = [
         uri: "http://" + hbIP + ":" + hbPORT + "/" + appleTV + "",
-        headers: ['Authorization'  : hbToken],
+        headers: ['Authorization' : hbToken],
         contentType: "application/json",
         body : ('{"commands":[{"key":"menu","longPress": false}]}')
     ]
@@ -301,7 +312,7 @@ def topmenu() {
     
     def params = [
         uri: "http://" + hbIP + ":" + hbPORT + "/" + appleTV + "",
-        headers: ['Authorization'  : hbToken],
+        headers: ['Authorization' : hbToken],
         contentType: "application/json",
         body : '{"commands":[{"key":"topmenu","longPress": false}]}'
     ]    
@@ -320,7 +331,7 @@ def home() {
     
     def params = [
         uri: "http://" + hbIP + ":" + hbPORT + "/" + appleTV + "",
-        headers: ['Authorization'  : hbToken],
+        headers: ['Authorization' : hbToken],
         contentType: "application/json",
         body : '{"commands":[{"key":"home","longPress": false}]}'
     ]
@@ -339,7 +350,7 @@ def play() {
     
     def params = [
         uri: "http://" + hbIP + ":" + hbPORT + "/" + appleTV + "",
-        headers: ['Authorization'  : hbToken],
+        headers: ['Authorization' : hbToken],
         contentType: "application/json",
         body : '{"commands":[{"key":"play","longPress": false}]}'
     ]
@@ -358,7 +369,7 @@ def pause() {
     
     def params = [
         uri: "http://" + hbIP + ":" + hbPORT + "/" + appleTV + "",
-        headers: ['Authorization'  : hbToken],
+        headers: ['Authorization' : hbToken],
         contentType: "application/json",
         body : '{"commands":[{"key":"pause","longPress": false}]}'
     ]
@@ -377,7 +388,7 @@ def stop() {
     
     def params = [
         uri: "http://" + hbIP + ":" + hbPORT + "/" + appleTV + "",
-        headers: ['Authorization'  : hbToken],
+        headers: ['Authorization' : hbToken],
         contentType: "application/json",
         body : '{"commands":[{"key":"stop","longPress": false}]}'
     ]
@@ -396,7 +407,7 @@ def next() {
     
     def params = [
         uri: "http://" + hbIP + ":" + hbPORT + "/" + appleTV + "",
-        headers: ['Authorization'  : hbToken],
+        headers: ['Authorization' : hbToken],
         contentType: "application/json",
         body : '{"commands":[{"key":"next","longPress": false}]}'
     ]
@@ -415,7 +426,7 @@ def previous() {
     
     def params = [
         uri: "http://" + hbIP + ":" + hbPORT + "/" + appleTV + "",
-        headers: ['Authorization'  : hbToken],
+        headers: ['Authorization' : hbToken],
         contentType: "application/json",
         body : '{"commands":[{"key":"previous","longPress": false}]}'
     ]
@@ -434,7 +445,7 @@ def suspend() {
     
     def params = [
         uri: "http://" + hbIP + ":" + hbPORT + "/" + appleTV + "",
-        headers: ['Authorization'  : hbToken],
+        headers: ['Authorization' : hbToken],
         contentType: "application/json",
         body : '{"commands":[{"key":"suspend","longPress": false}]}'
     ]
@@ -453,7 +464,7 @@ def wake() {
     
     def params = [
         uri: "http://" + hbIP + ":" + hbPORT + "/" + appleTV + "",
-        headers: ['Authorization'  : hbToken],
+        headers: ['Authorization' : hbToken],
         contentType: "application/json",
         body : '{"commands":[{"key":"wake","longPress": false}]}'
     ]
@@ -472,7 +483,7 @@ def volumeup() {
     
     def params = [
         uri: "http://" + hbIP + ":" + hbPORT + "/" + appleTV + "",
-        headers: ['Authorization'  : hbToken],
+        headers: ['Authorization' : hbToken],
         contentType: "application/json",
         body : '{"commands":[{"key":"volumeup","longPress": false}]}'
     ]
@@ -491,7 +502,7 @@ def volumedown() {
   
     def params = [
         uri: "http://" + hbIP + ":" + hbPORT + "/" + appleTV + "",
-        headers: ['Authorization'  : hbToken],
+        headers: ['Authorization' : hbToken],
         contentType: "application/json",
         body : '{"commands":[{"key":"volumedown","longPress": false}]}'
     ]
