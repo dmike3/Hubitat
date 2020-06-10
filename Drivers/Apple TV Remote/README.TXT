@@ -29,8 +29,7 @@ _______  ________._.
  5.) Now fill in the paramaters to match your devices. (The unique name is the apple tv name you setup under homebridge.)
  6.) Consider picking a Poll Time that makes sense. This will make calls to your REST server to check if the Apple TV is on.
      This is required so it can track state changes if you turn the Apple TV on or off by hand. 
-     
-     
+          
 *** EXAMPLES/IDEAS: ***
  
 - Bedtime routine to turn off Apple TV(s).
