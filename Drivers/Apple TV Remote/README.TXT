@@ -33,10 +33,9 @@ _______  ________._.
      
 *** EXAMPLES/IDEAS: ***
  
-A manual refresh can be done by using a RM rule. Remember to choose a custom attribute and select refresh.
-This will force a check to see if your Apple TV is online.
-
-An obvious use case would be to include this in one of your app schedules. Possibly a bedtime routine or an occupany routine?
+- Bedtime routine to turn off Apple TV(s).
+- Occupancy to trigger the Apple TV(s) to go off.
+- Motion Sensor detects motion, turn Apple TV ON, select an App, and start playing content.
 
 *** SUPPORT: ***
  
