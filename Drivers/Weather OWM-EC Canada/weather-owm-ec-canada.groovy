@@ -52,8 +52,8 @@ preferences {
  
     input name: "rssFeed", type: "text",   title: "EC Weather Alert RSS Feed", required: true
     input name: "owmAPI", type: "text",   title: "OW API Key", required: true
-    input name: "lat", type: "text",   title: "OW Latitude", required: true
-    input name: "lon", type: "text",   title: "OW Longitude", required: true
+    input name: "lat", type: "text",   title: "Latitude", required: true
+    input name: "lon", type: "text",   title: "Longitude", required: true
     input name: "units", type: "enum", title: "Unit Setting", required: true, multiple: false, defaultValue: unitOptions[0], options: unitOptions
     input name: "pollTime", type: "enum", title: "Poll Time", required: true, multiple: false, defaultValue: timeOptions[1], options: timeOptions
     input name: "logEnable", type: "bool",   title: "Enable debug logging", defaultValue: false, required: true
