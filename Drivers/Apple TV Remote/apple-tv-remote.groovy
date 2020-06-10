@@ -30,6 +30,10 @@
  * or implied. 
  *-------------------------------------------------------------------------------------------------------------------
  *
+ * CHANGE LOG:
+ *
+ * 6/10/2020 - Included Playing statues. Custom Attribute.
+ *
  **/
 
 import groovy.transform.Field
