@@ -135,8 +135,8 @@ def refresh() {
     httpGet(params) { response ->
         appleTVStatus = response.data.isOn
         isPlaying = response.data.isPlaying
-        if(logEnable) log.debug "Apple TV Status: $appleTVStatus"
-        if(logEnable) log.debug "Playing Status: $isPlaying"
+        if(logEnable) log.debug "$appleTV Status: $appleTVStatus"
+        if(logEnable) log.debug "$appleTV Playing Status: $isPlaying"
 
     } 
     } catch(Exception e) {
