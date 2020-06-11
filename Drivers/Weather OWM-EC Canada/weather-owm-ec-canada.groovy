@@ -458,7 +458,7 @@ def ow() {
         httpGet([uri:"http://api.openweathermap.org/data/2.5/weather?lat=$lat&lon=$lon&appid=$owmAPI&units=$unitsParsed"], { response ->
             
             condition_iconPoll = response.data.weather.icon.toString().minus('[').minus(']')
-            if(logEnable) log.debug "Pulled Icon Code from OWM: $condition_iconPoll"
+            if(logEnable) log.debug "Pulled OWM Weather Icon: $condition_iconPoll"
             conditionURL = "http://openweathermap.org/img/wn/$condition_iconPoll@2x.png"                   
         })
 
@@ -466,10 +466,10 @@ def ow() {
     
     // Weather Tile - Used for Dashboard
     
-    def tiletxt = '<div style=\"text-align:center;display:inline;font-size:0.65em;line-height=65%;margin-top:0em;margin-bottom:0em;\"><b>' + "${cityPoll}" + '</b>, ' + "<br></div>"
-    tiletxt+='<div style=\"text-align:center;display:inline;font-size:1em;line-height=100%;margin-top:0em;margin-bottom:0em;\">' + "${weatherPoll}" + "<br></div>"  
-    tiletxt+="<img src='$conditionURL' width='50' height='50' /><br></div>"
-    tiletxt+="${tempPoll}" + '<span style = \"font-size:.65em;\"> Feels like ' + "${feelsLikePoll}" + '</span><br></div>'
+    def tiletxt = '<div style=\"text-align:center;display:inline;font-size:0.65em;line-height=65%;margin-top:0em;margin-bottom:0em;\"><b>' + "${cityPoll}" + '</b></div><br> ' + ""
+    tiletxt+='<div style=\"text-align:center;display:inline;font-size:1em;line-height=100%;margin-top:0em;margin-bottom:0em;\">' + "${weatherPoll}" + "<br>"  
+    tiletxt+="<img src='$conditionURL' width='50' height='50' /><br>"
+    tiletxt+="${tempPoll}" + '<span style = \"font-size:.65em;\"> Feels like ' + "${feelsLikePoll}" + '</span><br>'
     tiletxt+='<div style=\"text-align:center;font-size:.65em;line-height=50%;margin-top:0em;margin-bottom:0em;\"><b>Wind Speed:</b>' + " ${windSpeedPoll}" +  ' <b>Humidity:</b>' + " ${humidityPoll}" + ' <b>Rain Today:</b>' + " ${rainTodayPoll}" + '<br></div>'
 	sendEvent(name: "weatherTile", value: tiletxt, displayed: true)
        
