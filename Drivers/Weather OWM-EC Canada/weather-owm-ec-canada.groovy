@@ -78,7 +78,6 @@ metadata {
    attribute "alert", "string"
    attribute "alertSummary", "string"
    attribute "city", "string"
-   attribute "condition_icon", "string"
    attribute "weather", "string"
    attribute "feels_like", "number"
    attribute "temp_min", "number"
@@ -198,64 +197,7 @@ def getWeather() {
 
 def ow() {
     
-        // Get Weather Icon
-    
-        httpGet([uri:"http://api.openweathermap.org/data/2.5/weather?lat=$lat&lon=$lon&appid=$owmAPI&units=$unitsParsed"], { response ->
-            
-            condition_iconPoll = response.data.weather.icon.toString().minus('[').minus(']')
-            if(logEnable) log.debug "Pulled Icon Code from OWM: $condition_iconPoll"
-           
-            if(condition_iconPoll == "01d") {  
-                sendEvent(name: "condition_icon", value: "<img src='http://openweathermap.org/img/wn/01d@2x.png' />")
-            }
-            
-            else if(condition_iconPoll == "02d") {    
-                sendEvent(name: "condition_icon", value: "<img src='http://openweathermap.org/img/wn/02d@2x.png' />")
-            }
-            
-            else if(condition_iconPoll == "03d") {
-                sendEvent(name: "condition_icon", value: "<img src='http://openweathermap.org/img/wn/03d@2x.png' />")
-            }
-            
-            else if(condition_iconPoll == "04d") {
-                sendEvent(name: "condition_icon", value: "<img src='http://openweathermap.org/img/wn/04d@2x.png' />")
-            }
-            
-            else if(condition_iconPoll == "06d") {
-                sendEvent(name: "condition_icon", value: "<img src='http://openweathermap.org/img/wn/06d@2x.png' />")
-            }
-            
-            else if(condition_iconPoll == "07d") {
-                sendEvent(name: "condition_icon", value: "<img src='http://openweathermap.org/img/wn/07d@2x.png' />")
-            }
-            
-            else if(condition_iconPoll == "08d") {
-                sendEvent(name: "condition_icon", value: "<img src='http://openweathermap.org/img/wn/08d@2x.png' />")
-            }
-            
-            else if(condition_iconPoll == "09d") {
-                sendEvent(name: "condition_icon", value: "<img src='http://openweathermap.org/img/wn/09d@2x.png' />")
-            }
-            
-            else if(condition_iconPoll == "10d") {
-                sendEvent(name: "condition_icon", value: "<img src='http://openweathermap.org/img/wn/10d@2x.png' />")
-            }
-            
-            else if(condition_iconPoll == "11d") {                
-                sendEvent(name: "condition_icon", value: "<img src='http://openweathermap.org/img/wn/11d@2x.png' />")                
-            }
-            
-            else if(condition_iconPoll == "13d") {                
-                sendEvent(name: "condition_icon", value: "<img src='http://openweathermap.org/img/wn/13d@2x.png' />")                
-            }
-            
-            else if(condition_iconPoll == "50d") {                
-                sendEvent(name: "condition_icon", value: "<img src='http://openweathermap.org/img/wn/50d@2x.png' />")                
-            }
-            
-        })
-
-    // End of Weather Icon
+        
              
     httpGet([uri:"http://api.openweathermap.org/data/2.5/weather?lat=$lat&lon=$lon&appid=$owmAPI&units=$unitsParsed"], { response ->
          
@@ -510,15 +452,30 @@ def ow() {
         
     })
     
+    
+    // Get Weather Icon
+    
+        httpGet([uri:"http://api.openweathermap.org/data/2.5/weather?lat=$lat&lon=$lon&appid=$owmAPI&units=$unitsParsed"], { response ->
+            
+            condition_iconPoll = response.data.weather.icon.toString().minus('[').minus(']')
+            if(logEnable) log.debug "Pulled Icon Code from OWM: $condition_iconPoll"
+                      
+        })
+
+    // End of Weather Icon
+    
     // Weather Tile - Used for Dashboard
     
-    def mytext = '<div style=\"text-align:center;display:inline;font-size:0.65em;line-height=65%;margin-top:0em;margin-bottom:0em;\">' + "${cityPoll}" + ', ' + "<br></div>"
-    mytext+='<div style=\"text-align:center;display:inline;font-size:1em;line-height=100%;margin-top:0em;margin-bottom:0em;\">' + "${weatherPoll}" + "<br></div>"
+    def tiletxt = '<div style=\"text-align:center;display:inline;font-size:0.65em;line-height=65%;margin-top:0em;margin-bottom:0em;\">' + "${cityPoll}" + ', ' + "<br></div>"
+    tiletxt+='<div style=\"text-align:center;display:inline;font-size:1em;line-height=100%;margin-top:0em;margin-bottom:0em;\">' + "${weatherPoll}" + "<br></div>"
     
-    //mytext+="<img src='http://openweathermap.org/img/wn/04d@2x.png' />"
-    mytext+="${tempPoll}" + '<span style = \"font-size:.65em;\"> Feels like ' + "${feelsLikePoll}" + '</span><br></div>'
-    mytext+='<div style=\"text-align:center;font-size:.65em;line-height=50%;margin-top:0em;margin-bottom:0em;\">Wind Speed:' + " ${windSpeedPoll}" +  ' Rain Today:' + " ${rainTodayPoll}" + '<br></div>'
-	sendEvent(name: "weatherTile", value: mytext, displayed: true)
+    // working out link
+    tiletxt+="<img src='http://openweathermap.org/img/wn/04d@2x.png' />"
+    
+    
+    tiletxt+="${tempPoll}" + '<span style = \"font-size:.65em;\"> Feels like ' + "${feelsLikePoll}" + '</span><br></div>'
+    tiletxt+='<div style=\"text-align:center;font-size:.65em;line-height=50%;margin-top:0em;margin-bottom:0em;\">Wind Speed:' + " ${windSpeedPoll}" +  ' Rain Today:' + " ${rainTodayPoll}" + '<br></div>'
+	sendEvent(name: "weatherTile", value: tiletxt, displayed: true)
        
 }
 
