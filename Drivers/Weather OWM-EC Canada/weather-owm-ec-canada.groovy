@@ -165,9 +165,7 @@ def poll() {
 
 
 def getWeather() {
-    
-    log.info "Polling Weather"
-    
+       
     // State Variables
 
     state.Version = '1.0.1 (Alpha)'
@@ -180,6 +178,8 @@ def getWeather() {
     else {
          unitsParsed = "imperial"   
     }
+    
+    if(logEnable) log.debug "Weather: Units are set to $unitsParsed"
 
     // Gets SunRise and SunSet Information from Hub
     def riseAndSet = getSunriseAndSunset()
@@ -197,8 +197,8 @@ def getWeather() {
 
 def ow() {
     
-        
-             
+    log.info "Weather: Polling Weather"
+    
     httpGet([uri:"http://api.openweathermap.org/data/2.5/weather?lat=$lat&lon=$lon&appid=$owmAPI&units=$unitsParsed"], { response ->
          
         
@@ -452,13 +452,13 @@ def ow() {
         
     })
     
+    if(logEnable) log.debug "Weather: Polling Weather Icon"
     
     // Get Weather Icon  http://openweathermap.org/img/wn/01d@2x.png
     
         httpGet([uri:"http://api.openweathermap.org/data/2.5/weather?lat=$lat&lon=$lon&appid=$owmAPI&units=$unitsParsed"], { response ->
             
             condition_iconPoll = response.data.weather.icon.toString().minus('[').minus(']')
-            if(logEnable) log.debug "Pulled OWM Weather Icon: $condition_iconPoll"
             conditionURL = "http://openweathermap.org/img/wn/$condition_iconPoll@2x.png"                   
         })
 
@@ -479,6 +479,8 @@ def ow() {
 // Polls Weather Environment Canada Alert Information
 
 def ec() {
+    
+        if(logEnable) log.debug "Weather: Polling WNC Alerts"
 
         httpGet([uri:"${rssFeed}"], { response ->
         
@@ -497,8 +499,8 @@ def ec() {
             sendEvent(name: "alertSummary", value: alertSummaryPoll)
             updateDataValue("alert", "$alertPoll")
             updateDataValue("alertSummary", "$alertSummaryPoll")
-            if(logEnable) log.debug "Weather Alert:  $alertPoll"
-            if(logEnable) log.debug "Weather Alert Summary:  $alertSummaryPoll"
+            if(logEnable) log.debug "Weather: Alert $alertPoll"
+            if(logEnable) log.debug "Weather: Alert Summary $alertSummaryPoll"
 
     })
     
