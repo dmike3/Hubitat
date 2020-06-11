@@ -128,7 +128,7 @@ def refresh() {
     def params = [
         uri: "http://" + hbIP + ":" + hbPORT + "/" + appleTV + "",
         requestContentType: "application/json",
-        timeout : 60,
+        timeout : 15,
         headers: ['Authorization'  : hbToken]
     ]
     
