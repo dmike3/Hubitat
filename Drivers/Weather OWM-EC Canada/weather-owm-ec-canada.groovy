@@ -78,7 +78,7 @@ metadata {
    attribute "alert", "string"
    attribute "alertSummary", "string"
    attribute "city", "string"
-   attribute "summary", "string"
+   attribute "weather", "string"
    attribute "feels_like", "number"
    attribute "temp_min", "number"
    attribute "temp_max", "number"
@@ -209,16 +209,16 @@ def ow() {
         updateDataValue("city", "$cityPoll")
         sendEvent(name: "city", value: cityPoll)
 
-        // Summary 
+        // Weather
         
-        summaryPoll = response.data.weather.description
+        weatherPoll = response.data.weather.description
         
-        if(!summaryPoll) {
-            summaryPoll = "Unavailable"
+        if(!weatherPoll) {
+            weatherPoll = "Unavailable"
         }
             
-        updateDataValue("summary", "$summaryPoll")
-        sendEvent(name: "summary", value: summaryPoll)
+        updateDataValue("weather", "$weatherPoll")
+        sendEvent(name: "weather", value: weatherPoll)
         
         // Temperature
         
