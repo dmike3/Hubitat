@@ -453,28 +453,24 @@ def ow() {
     })
     
     
-    // Get Weather Icon
+    // Get Weather Icon  http://openweathermap.org/img/wn/01d@2x.png
     
         httpGet([uri:"http://api.openweathermap.org/data/2.5/weather?lat=$lat&lon=$lon&appid=$owmAPI&units=$unitsParsed"], { response ->
             
             condition_iconPoll = response.data.weather.icon.toString().minus('[').minus(']')
             if(logEnable) log.debug "Pulled Icon Code from OWM: $condition_iconPoll"
-                      
+            conditionURL = "http://openweathermap.org/img/wn/$condition_iconPoll@2x.png"                   
         })
 
     // End of Weather Icon
     
     // Weather Tile - Used for Dashboard
     
-    def tiletxt = '<div style=\"text-align:center;display:inline;font-size:0.65em;line-height=65%;margin-top:0em;margin-bottom:0em;\">' + "${cityPoll}" + ', ' + "<br></div>"
-    tiletxt+='<div style=\"text-align:center;display:inline;font-size:1em;line-height=100%;margin-top:0em;margin-bottom:0em;\">' + "${weatherPoll}" + "<br></div>"
-    
-    // working out link
-    tiletxt+="<img src='http://openweathermap.org/img/wn/04d@2x.png' />"
-    
-    
+    def tiletxt = '<div style=\"text-align:center;display:inline;font-size:0.65em;line-height=65%;margin-top:0em;margin-bottom:0em;\"><b>' + "${cityPoll}" + '</b>, ' + "<br></div>"
+    tiletxt+='<div style=\"text-align:center;display:inline;font-size:1em;line-height=100%;margin-top:0em;margin-bottom:0em;\">' + "${weatherPoll}" + "<br></div>"  
+    tiletxt+="<img src='$conditionURL' />"
     tiletxt+="${tempPoll}" + '<span style = \"font-size:.65em;\"> Feels like ' + "${feelsLikePoll}" + '</span><br></div>'
-    tiletxt+='<div style=\"text-align:center;font-size:.65em;line-height=50%;margin-top:0em;margin-bottom:0em;\">Wind Speed:' + " ${windSpeedPoll}" +  ' Rain Today:' + " ${rainTodayPoll}" + '<br></div>'
+    tiletxt+='<div style=\"text-align:center;font-size:.65em;line-height=50%;margin-top:0em;margin-bottom:0em;\"><b>Wind Speed:</b>' + " ${windSpeedPoll}" +  ' <b>Humidity:</b>' + " ${humidityPoll}" + ' <b>Rain Today:</b>' + " ${rainTodayPoll}" + '<br></div>'
 	sendEvent(name: "weatherTile", value: tiletxt, displayed: true)
        
 }
