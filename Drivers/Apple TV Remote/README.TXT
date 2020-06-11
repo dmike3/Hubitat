@@ -9,7 +9,9 @@
 *** ALPHA - READ!! ***
 
 It's been discovered the current plugin is causing issues with timeouts with other applications. It's not recommended to install this
-yet. More work needs to be done both on the API side which contains bugs and the current plugin.
+yet. 
+
+More work needs to be done both on the API side which contains bugs and the current plugin.
 
 *** GENERAL ***
 
