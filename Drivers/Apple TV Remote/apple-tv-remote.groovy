@@ -167,7 +167,7 @@ def refresh() {
         }
     }    
     
-    if(isPlaying) {
+    if(isPlaying == true) {
         
         updateDataValue("playing", "Currently Playing")
         sendEvent(name: "playing", value: "Currently Playing")
