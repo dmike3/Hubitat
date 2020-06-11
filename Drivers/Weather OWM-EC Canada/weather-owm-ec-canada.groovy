@@ -468,7 +468,7 @@ def ow() {
     
     def tiletxt = '<div style=\"text-align:center;display:inline;font-size:0.65em;line-height=65%;margin-top:0em;margin-bottom:0em;\"><b>' + "${cityPoll}" + '</b>, ' + "<br></div>"
     tiletxt+='<div style=\"text-align:center;display:inline;font-size:1em;line-height=100%;margin-top:0em;margin-bottom:0em;\">' + "${weatherPoll}" + "<br></div>"  
-    tiletxt+="<img src='$conditionURL' />"
+    tiletxt+="<img src='$conditionURL' width='50' height='50' /><br></div>"
     tiletxt+="${tempPoll}" + '<span style = \"font-size:.65em;\"> Feels like ' + "${feelsLikePoll}" + '</span><br></div>'
     tiletxt+='<div style=\"text-align:center;font-size:.65em;line-height=50%;margin-top:0em;margin-bottom:0em;\"><b>Wind Speed:</b>' + " ${windSpeedPoll}" +  ' <b>Humidity:</b>' + " ${humidityPoll}" + ' <b>Rain Today:</b>' + " ${rainTodayPoll}" + '<br></div>'
 	sendEvent(name: "weatherTile", value: tiletxt, displayed: true)
