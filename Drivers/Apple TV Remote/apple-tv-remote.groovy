@@ -172,7 +172,7 @@ def refresh() {
         updateDataValue("playing", "Currently Playing")
         sendEvent(name: "playing", value: "Currently Playing")
     }
-    else {
+    else if(isPlaying == false) {
         
         updateDataValue("playing", "Idle")
         sendEvent(name: "playing", value: "Idle")
