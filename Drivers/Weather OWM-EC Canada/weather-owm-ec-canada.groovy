@@ -100,6 +100,7 @@ metadata {
    attribute "tempToday_min", "number"
    attribute "tempToday_max", "number"
    attribute "dewPoint", "number"
+   attribute "weatherTile", "string"
    
    
           
@@ -219,10 +220,6 @@ def ow() {
                 sendEvent(name: "condition_icon", value: "<img src='http://openweathermap.org/img/wn/04d@2x.png' />")
             }
             
-            else if(condition_iconPoll == "05d") {
-                sendEvent(name: "condition_icon", value: "<img src='http://openweathermap.org/img/wn/05d@2x.png' />")
-            }
-            
             else if(condition_iconPoll == "06d") {
                 sendEvent(name: "condition_icon", value: "<img src='http://openweathermap.org/img/wn/06d@2x.png' />")
             }
@@ -258,9 +255,7 @@ def ow() {
         })
 
     // End of Weather Icon
-        
-    
-        
+             
     httpGet([uri:"http://api.openweathermap.org/data/2.5/weather?lat=$lat&lon=$lon&appid=$owmAPI&units=$unitsParsed"], { response ->
          
         
@@ -514,7 +509,15 @@ def ow() {
         
     })
     
+    // Weather Tile - Used for Dashboard
     
+    def mytext = '<div style=\"text-align:center;display:inline;font-size:0.65em;line-height=65%;margin-top:0em;margin-bottom:0em;\">' + "${cityPoll}" + ', ' + "<br></div>"
+    mytext+='<div style=\"text-align:center;display:inline;font-size:1em;line-height=100%;margin-top:0em;margin-bottom:0em;\">' + "${weatherPoll}" + "<br></div>"
+    mytext+="<img src='http://openweathermap.org/img/wn/04d@2x.png' /><br>"
+    mytext+="${tempPoll}" + '<span style = \"font-size:.65em;\"> Feels like ' + "${feelsLikePoll}" + '</span><br></div>'
+    mytext+='<div style=\"text-align:center;font-size:.65em;line-height=50%;margin-top:0em;margin-bottom:0em;\">Wind Speed:' + " ${windSpeedPoll}" +  ' Rain Today:' + " ${rainTodayPoll}" + '<br></div>'
+	sendEvent(name: "weatherTile", value: mytext, displayed: true)
+       
 }
 
 
