@@ -207,51 +207,51 @@ def ow() {
                 sendEvent(name: "condition_icon", value: "<img src='http://openweathermap.org/img/wn/01d@2x.png' />")
             }
             
-            else if(visualPoll == "02d") {    
+            else if(condition_iconPoll == "02d") {    
                 sendEvent(name: "condition_icon", value: "<img src='http://openweathermap.org/img/wn/02d@2x.png' />")
             }
             
-            else if(visualPoll == "03d") {
+            else if(condition_iconPoll == "03d") {
                 sendEvent(name: "condition_icon", value: "<img src='http://openweathermap.org/img/wn/03d@2x.png' />")
             }
             
-            else if(visualPoll == "04d") {
+            else if(condition_iconPoll == "04d") {
                 sendEvent(name: "condition_icon", value: "<img src='http://openweathermap.org/img/wn/04d@2x.png' />")
             }
             
-            else if(visualPoll == "05d") {
+            else if(condition_iconPoll == "05d") {
                 sendEvent(name: "condition_icon", value: "<img src='http://openweathermap.org/img/wn/05d@2x.png' />")
             }
             
-            else if(visualPoll == "06d") {
+            else if(condition_iconPoll == "06d") {
                 sendEvent(name: "condition_icon", value: "<img src='http://openweathermap.org/img/wn/06d@2x.png' />")
             }
             
-            else if(visualPoll == "07d") {
+            else if(condition_iconPoll == "07d") {
                 sendEvent(name: "condition_icon", value: "<img src='http://openweathermap.org/img/wn/07d@2x.png' />")
             }
             
-            else if(visualPoll == "08d") {
+            else if(condition_iconPoll == "08d") {
                 sendEvent(name: "condition_icon", value: "<img src='http://openweathermap.org/img/wn/08d@2x.png' />")
             }
             
-            else if(visualPoll == "09d") {
+            else if(condition_iconPoll == "09d") {
                 sendEvent(name: "condition_icon", value: "<img src='http://openweathermap.org/img/wn/09d@2x.png' />")
             }
             
-            else if(visualPoll == "10d") {
+            else if(condition_iconPoll == "10d") {
                 sendEvent(name: "condition_icon", value: "<img src='http://openweathermap.org/img/wn/10d@2x.png' />")
             }
             
-            else if(visualPoll == "11d") {                
+            else if(condition_iconPoll == "11d") {                
                 sendEvent(name: "condition_icon", value: "<img src='http://openweathermap.org/img/wn/11d@2x.png' />")                
             }
             
-            else if(visualPoll == "13d") {                
+            else if(condition_iconPoll == "13d") {                
                 sendEvent(name: "condition_icon", value: "<img src='http://openweathermap.org/img/wn/13d@2x.png' />")                
             }
             
-            else if(visualPoll == "50d") {                
+            else if(condition_iconPoll == "50d") {                
                 sendEvent(name: "condition_icon", value: "<img src='http://openweathermap.org/img/wn/50d@2x.png' />")                
             }
             
