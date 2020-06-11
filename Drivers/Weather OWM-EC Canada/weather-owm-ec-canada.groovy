@@ -76,6 +76,7 @@ metadata {
    capability "Pressure Measurement"
 
    attribute "alert", "string"
+   attribute "alertSummary", "string"
    attribute "city", "string"
    attribute "summary", "string"
    attribute "feels_like", "number"
@@ -457,30 +458,22 @@ def ec() {
 
         httpGet([uri:"${rssFeed}"], { response ->
         
-        alertPoll = response.data.entry.summary[0]
-        
-                      
+        alertPoll = response.data.entry.title[0]
+        alertSummaryPoll = response.data.entry.summary[0]   
+                             
             if(!alertPoll) {
-                alertPoll = "No watches or warnings in effect."
+                alertPoll = "Unavailable"
             }
             
-            if(alertPoll == "No watches or warnings in effect.") {
-                
-                sendEvent(name: "alert", value: alertPoll)
-                updateDataValue("alert", "$alertPoll")
-                if(logEnable) log.debug "No watches or warnings in effect."
-     
+            if(!alertSummaryPoll) {
+                alertSummaryPoll = "Unavailable"
             }
-            else {
-                
-                getTitle = response.data.entry.title[0]
-                getSummary = response.data.entry.summary[0]
-                result = "$getTitle. $getSummary"
-                sendEvent(name: "alert", value: result)
-                updateDataValue("alert", "$result")
-                if(logEnable) log.debug "Weather Alert Announcement! $result"
-     
-            }
+            
+            sendEvent(name: "alert", value: alertPoll)
+            sendEvent(name: "alertSummary", value: alertSummaryPoll)
+            updateDataValue("alert", "$alertPoll")
+            updateDataValue("alertSummary", "$alertSummaryPoll")
+            if(logEnable) log.debug "Weather Alert Announcement! $result"
 
     })
     
