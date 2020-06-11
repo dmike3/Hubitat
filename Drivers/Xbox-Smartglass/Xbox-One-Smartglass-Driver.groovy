@@ -8,8 +8,8 @@
  *          - development
  *
  * Name: Xbox One Smartglass Driver
- * Version: 1.0
- * Author: Mike Fenton
+ * Version: 1.0.2
+ * Author: n3! development
  * 
  * Description: Xbox One Smartglass Intergration. The driver interfaces with the Xbox Smartglass Project giving 
  * local control of your Xbox One.
@@ -23,11 +23,16 @@
  *
  * README: https://github.com/dmike3/Hubitat/blob/master/Drivers/Xbox-Smartglass/README.TXT
  *-------------------------------------------------------------------------------------------------------------------
- * Copyright 2020 Mike Fenton
+ * Copyright 2020 n3! development
  * 
  * The following software is to be used "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express 
  * or implied. 
  *-------------------------------------------------------------------------------------------------------------------
+ *
+ * CHANAGE LOG:
+ *
+ * - Updated the default poll time to 5 minutes
+ *
  **/
 
 import groovy.transform.Field
@@ -50,7 +55,7 @@ preferences {
     input name: "restPORT", type: "text",   title: "REST Port Number", required: true
     input name: "xboxIP", type: "text",   title: "Xbox IP Address", required: true
     input name: "liveID", type: "text",   title: "Live ID", required: true
-    input name: "pollTime", type: "enum", title: "Poll Time", required: true, multiple: false, defaultValue: timeOptions[1], options: timeOptions
+    input name: "pollTime", type: "enum", title: "Poll Time", required: true, multiple: false, defaultValue: timeOptions[2], options: timeOptions
     input name: "logEnable", type: "bool",   title: "Enable debug logging", defaultValue: false, required: true
 
 }
@@ -112,6 +117,8 @@ def updated() {
 
 def refresh() {
  
+    state.version = "1.0.2"
+    
     if(logEnable) log.debug "Refresh Called"
     def xboxStatus = ""
     def currstate = device.currentState("switch").getValue()
@@ -149,7 +156,7 @@ def refresh() {
             
         }
     }
-        
+          
 }
 
 // Commands
