@@ -6,9 +6,9 @@
         \/       \/\/
           - development
 
-*** ALPHA ***
+*** ALPHA - READ!! ***
 
-This is still in alpha status. I'm still working out some syntax issues, but the main issues I've stumbled across are false positives.
+It's been discovered the current plugin is causing issues with timeouts with other applications. It's not recommended to install this yet. More work needs to be done both on the API side which contains bugs and the current plugin.
 
 *** GENERAL ***
 
