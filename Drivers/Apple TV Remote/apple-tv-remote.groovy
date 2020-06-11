@@ -146,7 +146,7 @@ def refresh() {
          
     // ---------------
     
-    if(appleTVStatus) {
+    if(appleTVStatus == true) {
       
         if(currstate == "off") {
             if(logEnable) log.debug "Setting $appleTV to on"
@@ -156,7 +156,7 @@ def refresh() {
             if(logEnable) log.debug "Skipping. $appleTV is already on"
         }
     }
-    else {
+    else if(appleTVStatus == false) {
         
         if(currstate == "on") {
             if(logEnable) log.debug "Setting $appleTV to off"
