@@ -8,7 +8,7 @@
  *          - development
  *
  * Name: Weather OWM-EC Canada
- * Version: 1.0.0 (Alpha)
+ * Version: 1.0.1 (Alpha)
  * Author: n3!
  * 
  * Description: Polls weather information from OpenWeatherMap and Weather Environment Canada (Alert RSS Feed - https://weather.gc.ca/).
@@ -78,6 +78,7 @@ metadata {
    attribute "alert", "string"
    attribute "alertSummary", "string"
    attribute "city", "string"
+   attribute "condition_icon", "string"
    attribute "weather", "string"
    attribute "feels_like", "number"
    attribute "temp_min", "number"
@@ -99,6 +100,8 @@ metadata {
    attribute "tempToday_min", "number"
    attribute "tempToday_max", "number"
    attribute "dewPoint", "number"
+   
+   
           
    }
 }
@@ -194,7 +197,94 @@ def getWeather() {
 
 def ow() {
     
+        // Get Weather Icon
     
+        httpGet([uri:"http://api.openweathermap.org/data/2.5/weather?lat=$lat&lon=$lon&appid=$owmAPI&units=$unitsParsed"], { response ->
+            
+            def condition_iconPoll = response.data.weather.icon.toString().minus('[').minus(']')
+           
+            if(condition_iconPoll == "01d") {
+                
+                sendEvent(name: "condition_icon", value: "<img src='http://openweathermap.org/img/wn/01d@2x.png' />")
+                
+            }
+            else if(visualPoll == "02d") {
+                
+                sendEvent(name: "condition_icon", value: "<img src='http://openweathermap.org/img/wn/02d@2x.png' />")
+                
+            }
+            
+            else if(visualPoll == "03d") {
+                                
+                sendEvent(name: "condition_icon", value: "<img src='http://openweathermap.org/img/wn/03d@2x.png' />")
+                
+            }
+            
+            else if(visualPoll == "04d") {
+                
+                sendEvent(name: "condition_icon", value: "<img src='http://openweathermap.org/img/wn/04d@2x.png' />")
+            }
+            
+            else if(visualPoll == "05d") {
+                
+                sendEvent(name: "condition_icon", value: "<img src='http://openweathermap.org/img/wn/05d@2x.png' />")
+                
+            }
+            
+            else if(visualPoll == "06d") {
+                
+                sendEvent(name: "condition_icon", value: "<img src='http://openweathermap.org/img/wn/06d@2x.png' />")
+                
+            }
+            
+            else if(visualPoll == "07d") {
+                
+                sendEvent(name: "condition_icon", value: "<img src='http://openweathermap.org/img/wn/07d@2x.png' />")
+                
+            }
+            
+            else if(visualPoll == "08d") {
+                
+                sendEvent(name: "condition_icon", value: "<img src='http://openweathermap.org/img/wn/08d@2x.png' />")
+                
+            }
+            
+            else if(visualPoll == "09d") {
+                
+                sendEvent(name: "condition_icon", value: "<img src='http://openweathermap.org/img/wn/09d@2x.png' />")
+                
+            }
+            
+            else if(visualPoll == "10d") {
+                
+                sendEvent(name: "condition_icon", value: "<img src='http://openweathermap.org/img/wn/10d@2x.png' />")
+                
+            }
+            
+            else if(visualPoll == "11d") {
+                
+                sendEvent(name: "condition_icon", value: "<img src='http://openweathermap.org/img/wn/11d@2x.png' />")
+                
+            }
+            
+            else if(visualPoll == "13d") {
+                
+                sendEvent(name: "condition_icon", value: "<img src='http://openweathermap.org/img/wn/13d@2x.png' />")
+                
+            }
+            
+            else if(visualPoll == "50d") {
+                
+                sendEvent(name: "condition_icon", value: "<img src='http://openweathermap.org/img/wn/50d@2x.png' />")
+                
+            }
+            
+        })
+
+    // End of Weather Icon
+        
+    
+        
     httpGet([uri:"http://api.openweathermap.org/data/2.5/weather?lat=$lat&lon=$lon&appid=$owmAPI&units=$unitsParsed"], { response ->
          
         
