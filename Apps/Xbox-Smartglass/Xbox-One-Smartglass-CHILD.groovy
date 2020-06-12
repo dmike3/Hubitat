@@ -49,11 +49,10 @@ definition(
     iconX3Url: "",
 	importUrl: "",)
 
+    state.version = "1.0.2"
 
 preferences {
-    page(name: "mainPage")
-    
-        
+    page(name: "mainPage")        
     }
 
 def mainPage(){
@@ -77,6 +76,7 @@ def mainPage(){
         section("<div style='color:#ffffff;font-weight: bold;background-color:green;border: 1px solid;box-shadow: 2px 3px #A9A9A9'> General:</div>") {
             label title: "Enter a label:", required: true
             input "logEnable", "bool", title: "Enable Debug Logging", description: "debugging", defaultValue:false, submitOnChange:true
+            paragraph "<center><b>Xbox One Smartglass $state.version</b></center><br><center><img src='https://github.com/dmike3/Hubitat/blob/master/logo.PNG?raw=true'></center>"
         }      
     }    
 }
