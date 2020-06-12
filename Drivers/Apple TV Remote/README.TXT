@@ -47,6 +47,7 @@ This is required so it can track state changes if you turn the Apple TV on or of
 Bedtime routine to turn off Apple TV(s).
 Occupancy triggers and tells your Apple TV(s) to turn off.
 Motion Sensor detects motion, turn Apple TV ON, select an App, and start playing content.
+
 *** SUPPORT: ***
 
 You can find me under the Hubitat forums if you have any questions.
