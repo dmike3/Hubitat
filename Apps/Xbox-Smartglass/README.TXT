@@ -25,7 +25,7 @@
  App Parent: https://raw.githubusercontent.com/dmike3/Hubitat/master/Apps/Xbox-Smartglass/Xbox-One-Smartglass-PARENT.groovy
  App Child: https://raw.githubusercontent.com/dmike3/Hubitat/master/Apps/Xbox-Smartglass/Xbox-One-Smartglass-CHILD.groovy
  Driver: https://raw.githubusercontent.com/dmike3/Hubitat/master/Drivers/Xbox-Smartglass/Xbox-One-Smartglass-Driver.groovy
- Readme: https://github.com/dmike3/Hubitat/blob/master/Drivers/Xbox-Smartglass/README.TXT
+ Readme: https://raw.githubusercontent.com/dmike3/Hubitat/master/Apps/Xbox-Smartglass/README.TXT
  
  *** INSTALLATION: ***
  
