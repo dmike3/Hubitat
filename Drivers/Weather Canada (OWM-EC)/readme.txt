@@ -16,6 +16,10 @@
  2.) Alert RSS URL to your city via Environment Weather Canada (https://weather.gc.ca/). After picking your city, scroll down and select
      the RSS icon. Select the Alert RSS feed. Copy this URL and paste it into "EC Weather Alert RSS Feed" paramater under the driver.
  
+ *** DOWNLOAD LINK ***
+ 
+ Driver: https://raw.githubusercontent.com/dmike3/Hubitat/master/Drivers/Weather%20Canada%20(OWM-EC)/Weather%20Canada%20(OWM-EC).groovy
+ Readme: 
  *** INSTALLATION: ***
  
  1.) Go to your Hubitat Drivers Code area and create a new driver.
