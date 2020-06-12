@@ -20,7 +20,7 @@
  1.) Smartglass REST Server
  2.) Turn on the feature Instant-On on your Xbox. This allows for powering on. Otherwise you will see errors in your Hubitat logs. 
  
-  *** DOWNLOAD LINK ***
+  *** DOWNLOAD LINKS ***
  
  Driver: https://raw.githubusercontent.com/dmike3/Hubitat/master/Drivers/Xbox-Smartglass/Xbox-One-Smartglass-Driver.groovy
  Readme: https://github.com/dmike3/Hubitat/blob/master/Drivers/Xbox-Smartglass/README.TXT
