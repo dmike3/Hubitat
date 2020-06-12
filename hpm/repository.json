@@ -6,7 +6,7 @@
     {
       "name": "Xbox One Smartglass",
       "category": "Integrations",
-      "location": "https://raw.githubusercontent.com/dmike3/Hubitat/master/Drivers/Xbox-Smartglass/packageManifest.json",
+      "location": "https://raw.githubusercontent.com/dmike3/Hubitat/master/hpm/xbox-smartglass/packageManifest.json",
       "description": "Xbox One Smartglass Intergration. The app and driver interfaces with the Xbox Smartglass Project giving local control of your Xbox One."
     }
   ]
