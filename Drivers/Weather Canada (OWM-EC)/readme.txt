@@ -9,7 +9,8 @@
  *** GENERAL ***
  
  The driver interfaces and polls data from both Environment Weather Canada and OpenWeatherMap. Alert information is only polled from EC.
- 
+ Includes options for a weather tile.
+  
  *** PREREQUISITES: ***
  
  1.) OpenWeatherMap API Key (Free) 
