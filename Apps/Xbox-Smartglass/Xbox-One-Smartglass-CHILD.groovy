@@ -32,6 +32,7 @@
  *
  * CHANAGE LOG:
  *
+ * June 12, 2020 - Added a front end for the driver. Parent/Child apps.
  * June 8, 2020 - Updated the default poll time. Included an App installer
  *
  **/
@@ -57,30 +58,26 @@ preferences {
 
 def mainPage(){
     dynamicPage(name: "mainPage", nextpage: null, install: true, uninstall: true, refreshInterval: 0) {
-    
-// UI
-        
-    section("<h1 style='color:green;font-weight: bold'><img src='https://github.com/dmike3/Hubitat/blob/master/Apps/Xbox-Smartglass/_graphics/xbox.png?raw=true'> Xbox One Smartglass</h1>", hideable: flase, hidden: false) {
-      }           
+
+        section("<h1 style='color:green;font-weight: bold'><img src='https://github.com/dmike3/Hubitat/blob/master/Apps/Xbox-Smartglass/_graphics/xbox.png?raw=true'> Xbox One Smartglass</h1>", hideable: flase, hidden: false) {
+        }           
   
-      section("<div style='color:#ffffff;font-weight: bold;background-color:green;border: 1px solid;box-shadow: 2px 3px #A9A9A9'> Information:</div>") {
-          paragraph "SmartGlass is a remote control protocol developed by Microsoft for their Xbox gaming system. This application interfaces with the Xbox Smartglass Project which allows local control of your Xbox One. <br><br>Please remember to install and setup the REST server. See <b>https://pypi.org/project/xbox-smartglass-core/</b> for more details.</br>"
-     }  
+        section("<div style='color:#ffffff;font-weight: bold;background-color:green;border: 1px solid;box-shadow: 2px 3px #A9A9A9'> Information:</div>") {
+            paragraph "SmartGlass is a remote control protocol developed by Microsoft for their Xbox gaming system. This application interfaces with the Xbox Smartglass Project which allows local control of your Xbox One. <br><br>Please remember to install and setup the REST server. See <b>https://pypi.org/project/xbox-smartglass-core/</b> for more details.</br>"
+        }  
         
-      section("<div style='color:#ffffff;font-weight: bold;background-color:green;border: 1px solid;box-shadow: 2px 3px #A9A9A9'> Xbox Configuration:</div>") {
-          input "restIP", "text", required: true, multiple: false, title: "REST Server IP Address:"
-          input "restPORT", "text", required: true, multiple: false, title: "REST Server Port Number:"
-          input "xboxIP", "text", required: true, multiple: false, title: "Xbox IP Address:"
-          input "xboxLiveID", "text", required: true, multiple: false, title: "Xbox Live ID:"
-     }
+        section("<div style='color:#ffffff;font-weight: bold;background-color:green;border: 1px solid;box-shadow: 2px 3px #A9A9A9'> Xbox Configuration:</div>") {
+            input "restIP", "text", required: true, multiple: false, title: "<b>REST Server IP Address:</b>"
+            input "restPORT", "text", required: true, multiple: false, title: "<b>REST Server Port Number:</b>"
+            input "xboxIP", "text", required: true, multiple: false, title: "<b>Xbox IP Address:</b>"
+            input "xboxLiveID", "text", required: true, multiple: false, title: "<b>Xbox Live ID:</b>"
+            input "xboxName", "text", required: true, multiplle: false, title: "<b>Xbox Name</b>"
+        }
         
-    section("<div style='color:#ffffff;font-weight: bold;background-color:green;border: 1px solid;box-shadow: 2px 3px #A9A9A9'> General:</div>") {
-        label title: "Enter a label:", required: true
-        input "logEnable", "bool", title: "Enable Debug Logging", description: "debugging", defaultValue:false, submitOnChange:true
-    } 
-    
-        
-       
+        section("<div style='color:#ffffff;font-weight: bold;background-color:green;border: 1px solid;box-shadow: 2px 3px #A9A9A9'> General:</div>") {
+            label title: "Enter a label:", required: true
+            input "logEnable", "bool", title: "Enable Debug Logging", description: "debugging", defaultValue:false, submitOnChange:true
+        }      
     }    
 }
 
@@ -109,7 +106,7 @@ def createChildDevice() {
             
             if(!check) {
                 if(logEnable) "Creating new device..."
-                child = addChildDevice("n3!", "Xbox One Smartglass Driver", "Xbox One ($xboxIP)", [name: "Xbox One ($xboxIP)", label: "Xbox One ($xboxIP)", isComponent: true])
+                child = addChildDevice("n3!", "Xbox One Smartglass Driver", "X1-$xboxIP", [name: "$xboxName ($xboxIP)", label: "$xboxName ($xboxIP)", isComponent: true])
                 child.updateSetting("restIp", "$restIP")
                 child.updateSetting("restPORT", "$restPORT")
                 child.updateSetting("restIp", "$restIP")
@@ -121,7 +118,7 @@ def createChildDevice() {
 }
 
 def updateChildDevice() {
-    
+
     child = getChildDevice("Xbox One ($xboxIP)")
     log.debug "$child"
   
