@@ -1,0 +1,34 @@
+{
+  "packageName": "Xbox One Smartglass",
+  "author": "n3! development",
+  "version": "1.0.2",
+  "minimumHEVersion": "2.2.0",
+  "dateReleased": "2020-06-01",
+  "drivers": [
+    {
+      "id": "c3b7043b-6f79-4397-b721-8bb79372bc43",
+      "name": "Xbox One Smartglass Driver",
+      "namespace": "n3!",
+      "location": "https://raw.githubusercontent.com/dmike3/Hubitat/master/Drivers/Xbox-Smartglass/Xbox-One-Smartglass-Driver.groovy",
+      "required": true
+    }
+  ],
+  "apps": [
+    {
+      "id": "11b364d0-0196-43fa-bf67-6912c6a1b017",
+      "name": "Xbox One Smartglass",
+      "namespace": "n3!",
+      "location": "https://raw.githubusercontent.com/dmike3/Hubitat/master/Apps/Xbox-Smartglass/Xbox-One-Smartglass-PARENT.groovy",
+      "required": true,
+      "oauth": false
+    },
+    {
+      "id": "3086a927-c093-4764-917d-003cd5326e9f",
+      "name": "Xbox One Smartglass Child",
+      "namespace": "n3!",
+      "location": "https://raw.githubusercontent.com/dmike3/Hubitat/master/Apps/Xbox-Smartglass/Xbox-One-Smartglass-CHILD.groovy",
+      "required": true,
+      "oauth": false
+    }
+  ]
+}
