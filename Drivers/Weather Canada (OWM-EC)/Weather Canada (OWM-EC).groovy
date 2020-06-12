@@ -163,8 +163,8 @@ def getWeather() {
        
     // State Variables
 
-    state.Version = '1.0.1 (Alpha)'
-  
+    state.Version = '1.0.1'  
+    
     // Parse Units
 
     if(units == "Celsius") {
