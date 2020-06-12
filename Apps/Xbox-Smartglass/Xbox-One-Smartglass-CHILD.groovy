@@ -119,9 +119,8 @@ def createChildDevice() {
 
 def updateChildDevice() {
 
-    child = getChildDevice("Xbox One ($xboxIP)")
-    log.debug "$child"
-  
+    child = getChildDevice("X1-$xboxIP")
+    
     if(child) {
     
     child.updateSetting("restIp", "$restIP")
