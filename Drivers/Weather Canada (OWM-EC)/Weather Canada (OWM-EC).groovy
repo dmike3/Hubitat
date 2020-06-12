@@ -31,6 +31,7 @@ import groovy.transform.Field
 
 @Field static List timeOptions = [
     
+    "Disabled",
     "5 Minutes",
     "10 Minutes",
     "15 Minutes",
@@ -52,7 +53,7 @@ preferences {
     input name: "lat", type: "text",   title: "Latitude", required: true
     input name: "lon", type: "text",   title: "Longitude", required: true
     input name: "units", type: "enum", title: "Unit Setting", required: true, multiple: false, defaultValue: unitOptions[0], options: unitOptions
-    input name: "pollTime", type: "enum", title: "Poll Time", required: true, multiple: false, defaultValue: timeOptions[1], options: timeOptions
+    input name: "pollTime", type: "enum", title: "Poll Time", required: true, multiple: false, defaultValue: timeOptions[2], options: timeOptions
     input name: "logEnable", type: "bool",   title: "Enable debug logging", defaultValue: false, required: true
 }
 
@@ -103,6 +104,10 @@ def initialize(){
    
     getWeather()
     
+    if (pollTime == "Disabled") {
+        unschedule(getWeather)   
+    }
+    
     if (pollTime == "5 Minutes") {
         schedule("0 */5 * ? * *", getWeather)
     }
@@ -129,19 +134,19 @@ def initialize(){
 }
 
 def updated() {
-    unschedule(pollTime)
+    unschedule(getWeather)   
     initialize()
     
 }
 
 def refresh() {
-    unschedule(pollTime)
+    unschedule(getWeather)
     initialize()
         
 }
 
 def poll() {
-    unschedule(pollTime)
+    unschedule(getWeather)
     initialize()
         
 }
