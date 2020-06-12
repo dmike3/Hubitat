@@ -17,7 +17,9 @@
  *
  * Driver: https://raw.githubusercontent.com/dmike3/Hubitat/master/Drivers/Weather%20Canada%20(OWM-EC)/Weather%20Canada%20(OWM-EC).groovy
  *
- * README: https://raw.githubusercontent.com/dmike3/Hubitat/master/Drivers/Weather%20Canada%20(OWM-EC)/readme.txt
+ * Readme: https://raw.githubusercontent.com/dmike3/Hubitat/master/Drivers/Weather%20Canada%20(OWM-EC)/readme.txt
+ *
+ * Code: Referencing and pulling code from other awesome weather apps and suggestions. Our Hubitat community rocks!
  *
  *-------------------------------------------------------------------------------------------------------------------
  * Copyright 2020 n3! development
