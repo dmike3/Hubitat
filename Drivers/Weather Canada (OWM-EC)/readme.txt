@@ -19,7 +19,8 @@
  *** DOWNLOAD LINK ***
  
  Driver: https://raw.githubusercontent.com/dmike3/Hubitat/master/Drivers/Weather%20Canada%20(OWM-EC)/Weather%20Canada%20(OWM-EC).groovy
- Readme: 
+ Readme: https://raw.githubusercontent.com/dmike3/Hubitat/master/Drivers/Weather%20Canada%20(OWM-EC)/readme.txt
+ 
  *** INSTALLATION: ***
  
  1.) Go to your Hubitat Drivers Code area and create a new driver.
