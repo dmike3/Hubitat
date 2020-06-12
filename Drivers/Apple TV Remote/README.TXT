@@ -11,7 +11,7 @@
 It's been discovered the current plugin is causing issues with timeouts with other applications. It's not recommended to install this
 yet. 
 
-More work needs to be done both on both the HB plugin and the Hubitat plugin.
+More work needs to be done both on the HB plugin and the Hubitat plugin.
 
 *** GENERAL ***
 
