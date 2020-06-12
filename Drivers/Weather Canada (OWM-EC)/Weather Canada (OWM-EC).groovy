@@ -15,7 +15,7 @@
  *
  * Features: Current Weather and Canadian Weather Alerts
  *
- * Driver: https://raw.githubusercontent.com/dmike3/Hubitat/master/Drivers/Weather%20Canada%20(OWM-EC)/Weather%20Canada%20(OWM-EC).groovy
+ * Driver: https://raw.githubusercontent.com/dmike3/Hubitat/master/Drivers/Weather%20OWM-EC%20Canada/weather-owm-ec-canada.groovy
  *
  * README: https://raw.githubusercontent.com/dmike3/Hubitat/master/Drivers/Weather%20OWM-EC%20Canada/README.TXT
  *
@@ -47,7 +47,6 @@ import groovy.transform.Field
     "Fahrenheit",
 ]
 
-
 preferences {
  
     input name: "rssFeed", type: "text",   title: "EC Weather Alert RSS Feed", required: true
@@ -57,8 +56,6 @@ preferences {
     input name: "units", type: "enum", title: "Unit Setting", required: true, multiple: false, defaultValue: unitOptions[0], options: unitOptions
     input name: "pollTime", type: "enum", title: "Poll Time", required: true, multiple: false, defaultValue: timeOptions[1], options: timeOptions
     input name: "logEnable", type: "bool",   title: "Enable debug logging", defaultValue: false, required: true
-    
-
 }
 
 metadata {
@@ -99,10 +96,7 @@ metadata {
    attribute "tempToday_min", "number"
    attribute "tempToday_max", "number"
    attribute "dewPoint", "number"
-   attribute "weatherTile", "string"
-   
-   
-          
+   attribute "weatherTile", "string"          
    }
 }
 
@@ -133,9 +127,7 @@ def initialize(){
     
     if (pollTime == "1 Hour") {
         schedule("0 0 * ? * *", getWeather)
-    }
-    
-          
+    }          
 }
 
 def updated() {
@@ -156,13 +148,11 @@ def poll() {
         
 }
 
-
 // Commands
 
     command "poll"
 
 // Event Handlers
-
 
 def getWeather() {
        
@@ -189,8 +179,7 @@ def getWeather() {
     sendEvent(name: "sunSet", value: riseAndSet.sunset)
     
     ec()
-    ow()
-    
+    ow()    
 }
 
 // Polls OpenWeatherMap
@@ -225,8 +214,7 @@ def ow() {
         sendEvent(name: "weather", value: weatherPoll)
         
         // Temperature
-        
-        
+                
         tempPoll = response.data.main.temp
         
         if(!tempPoll) {
@@ -344,7 +332,6 @@ def ow() {
         
     })
     
-
     // OWM One Call API
     
     httpGet([uri:"https://api.openweathermap.org/data/2.5/onecall?lat=$lat&lon=$lon&exclude=current,minutely,hourly&appid=$owmAPI&units=$unitsParsed"], { response ->
@@ -471,10 +458,8 @@ def ow() {
     tiletxt+="<img src='$conditionURL' width='50' height='50' /><br>"
     tiletxt+="${tempPoll}" + '<span style = \"font-size:.65em;\"> Feels like ' + "${feelsLikePoll}" + '</span><br>'
     tiletxt+='<div style=\"text-align:center;font-size:.65em;line-height=50%;margin-top:0em;margin-bottom:0em;\"><b>Wind Speed:</b>' + " ${windSpeedPoll}" +  ' <b>Humidity:</b>' + " ${humidityPoll}" + ' <b>Rain Today:</b>' + " ${rainTodayPoll}" + '<br></div>'
-	sendEvent(name: "weatherTile", value: tiletxt, displayed: true)
-       
+	sendEvent(name: "weatherTile", value: tiletxt, displayed: true)       
 }
-
 
 // Polls Weather Environment Canada Alert Information
 
@@ -501,7 +486,5 @@ def ec() {
             updateDataValue("alertSummary", "$alertSummaryPoll")
             if(logEnable) log.debug "Weather: Alert $alertPoll"
             if(logEnable) log.debug "Weather: Alert Summary $alertSummaryPoll"
-
-    })
-    
+    })    
 }
