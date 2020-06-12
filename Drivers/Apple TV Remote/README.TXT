@@ -26,6 +26,12 @@ After completing and confirming the REST server is working, follow the instructi
 
 Homebridge: https://homebridge.io/
 Homebridge Apple TV Remote: homebridge-apple-tv-remote - npm
+
+*** DOWNLOAD LINKS ***
+
+Driver: https://raw.githubusercontent.com/dmike3/Hubitat/master/Drivers/Apple%20TV%20Remote/apple-tv-remote.groovy
+Readme: https://raw.githubusercontent.com/dmike3/Hubitat/master/Drivers/Apple%20TV%20Remote/README.TXT
+
 *** INSTALLATION: ***
 
 1.) Go to your Hubitat Drivers Code area and create a new driver.
