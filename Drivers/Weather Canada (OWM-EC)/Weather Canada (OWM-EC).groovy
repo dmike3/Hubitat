@@ -15,9 +15,9 @@
  *
  * Features: Current Weather and Canadian Weather Alerts
  *
- * Driver: https://raw.githubusercontent.com/dmike3/Hubitat/master/Drivers/Weather%20OWM-EC%20Canada/weather-owm-ec-canada.groovy
+ * Driver: https://raw.githubusercontent.com/dmike3/Hubitat/master/Drivers/Weather%20Canada%20(OWM-EC)/Weather%20Canada%20(OWM-EC).groovy
  *
- * README: https://raw.githubusercontent.com/dmike3/Hubitat/master/Drivers/Weather%20OWM-EC%20Canada/README.TXT
+ * README: https://raw.githubusercontent.com/dmike3/Hubitat/master/Drivers/Weather%20Canada%20(OWM-EC)/readme.txt
  *
  *-------------------------------------------------------------------------------------------------------------------
  * Copyright 2020 n3! development
