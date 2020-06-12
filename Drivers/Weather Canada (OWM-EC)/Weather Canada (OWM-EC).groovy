@@ -27,7 +27,6 @@
  *-------------------------------------------------------------------------------------------------------------------
  **/
 
-
 import groovy.transform.Field
 
 @Field static List timeOptions = [
@@ -39,7 +38,6 @@ import groovy.transform.Field
     "45 Minutes",
     "1 Hour",
 ]
-
 
 @Field static List unitOptions = [
 
