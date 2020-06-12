@@ -47,12 +47,12 @@ definition(
     iconX3Url: "",
 	importUrl: "",)
 
+state.version = "1.0.2"
 
 preferences {
     page(name: "mainPage", title: "", install: true, uninstall: true,submitOnChange: true) {
         section {
             paragraph "<h1 style='color:green;font-weight: bold'><img src='https://github.com/dmike3/Hubitat/blob/master/Apps/Xbox-Smartglass/_graphics/xbox.png?raw=true'> Xbox One Smartglass</h1>"
-            
             app(name: "childApps", appName: "Xbox One Smartglass Child", namespace: "n3!", title: "Create Xbox One Smartglass Child", multiple: true)
             }
     }
