@@ -1,0 +1,13 @@
+{
+  "author": "n3!",
+  "gitHubUrl": "https://github.com/dmike3/",
+  "payPalUrl": "https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=7TFJDAWDBTJL2&currency_code=USD&source=url",
+  "packages": [
+    {
+      "name": "Xbox One Smartglass Driver",
+      "category": "Integrations",
+      "location": "https://raw.githubusercontent.com/dmike3/Hubitat/master/Drivers/Xbox-Smartglass/packageManifest.json",
+      "description": "Xbox One Smartglass Intergration. The driver interfaces with the Xbox Smartglass Project giving local control of your Xbox One."
+    }
+  ]
+}
