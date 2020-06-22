@@ -134,7 +134,6 @@ def refresh() {
     try {
         httpGet(paramsStatus) { response ->
             status = response.data.status
-            log.debug "$status"
             if(logEnable) log.debug "Getting channels status"
             on()
     }
@@ -157,7 +156,6 @@ def refresh() {
     try {
         httpGet(paramsChannel) { response ->
             chanNum = response.data.channel.number
-            log.debug "$chanNum"
             if(logEnable) log.debug "Getting current channel"
     }
     } catch(Exception e) {
@@ -175,7 +173,6 @@ def refresh() {
     try {
         httpGet(paramsPlaying) { response ->
             nowPlaying = response.data.now_playing
-            log.debug "$nowPlaying"
             if(logEnable) log.debug "Getting now playing name"
     }
     } catch(Exception e) {
@@ -184,20 +181,19 @@ def refresh() {
     
     // Get favourite channel list
     
-    //def paramsFav = [
-    //    uri: "http://" + clientIP + ":57000/api/favorite_channels/",
-    //    contentType: "application/json",
-    // ]
+    def paramsFav = [
+        uri: "http://" + clientIP + ":57000/api/favorite_channels/",
+        contentType: "application/json",
+    ]
 
-    //try {
-    //    httpGet(paramsFav) { response ->
-    //        favChans = response.data
-    //        log.debug "$favChans"
-    //        if(logEnable) log.debug "Getting favourite channel list"
-    //}
-    //} catch(Exception e) {
-    //    if(logEnable) log.debug "Cannot reach Channels DVR Client. Unable to poll favourite channels"
-    //}    
+    try {
+        httpGet(paramsFav) { response ->
+            favChans = response.data
+            if(logEnable) log.debug "Getting favourite channel list"
+    }
+    } catch(Exception e) {
+        if(logEnable) log.debug "Cannot reach Channels DVR Client. Unable to poll favourite channels"
+    }    
 
     } // Closing IF statement
     
@@ -236,7 +232,7 @@ def refresh() {
 
 def on() {
     sendEvent(name: "switch", value: "on")
-    
+        
 }
 
 def off() {
