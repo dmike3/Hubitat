@@ -8,7 +8,7 @@
  *          - development
  *
  * Name: Channels DVR Driver
- * Version: 1.0.0
+ * Version: 1.0.0 (Alpha)
  * Author: n3! development
  * 
  * Description: Channels DVR Remote Control.
