@@ -6,6 +6,10 @@ _______  ________._.
         \/       \/\/
           - development
 
+*** Version ***
+
+1.0.0 Alpha
+
 *** GENERAL ***
 
 This driver works with Channels DVR clients. It allows remote control features such as On/Off, Pause, Resume, Stop, Play Channel, mute, etc...
