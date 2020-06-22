@@ -156,7 +156,7 @@ def refresh() {
     try {
         httpGet(paramsChannel) { resp ->
             chanNum = response.data.channel.number
-            log.debug "$status"
+            log.debug "$chanNum"
             if(logEnable) log.debug "Getting current channel"
     }
     } catch(Exception e) {
@@ -174,8 +174,8 @@ def refresh() {
     try {
         httpGet(paramsFav) { resp ->
             favChans = response.data.channel.number
-            log.debug "$status"
-            if(logEnable) log.debug "Sending toggle mute command"
+            log.debug "$favChans"
+            if(logEnable) log.debug "Getting favourite channel list"
     }
     } catch(Exception e) {
         if(logEnable) log.debug "Cannot reach Channels DVR Client. Unable to poll favourite channels"
