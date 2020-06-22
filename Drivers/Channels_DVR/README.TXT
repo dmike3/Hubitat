@@ -8,7 +8,7 @@ _______  ________._.
 
 *** GENERAL ***
 
-This driver works with Channels DVR clients.
+This driver works with Channels DVR clients. It allows remote control features such as On/Off, Pause, Resume, Stop, Play Channel, mute, etc...
 
 *** PREREQUISITES: ***
 
