@@ -172,7 +172,7 @@ def refresh() {
 
     try {
         httpGet(paramsPlaying) { response ->
-            nowPlaying = response.data.now_playing
+            nowPlaying = response.data.now_playing.title
             if(logEnable) log.debug "Getting now playing name"
     }
     } catch(Exception e) {
@@ -188,7 +188,7 @@ def refresh() {
 
     try {
         httpGet(paramsFav) { response ->
-            favChans = response.data
+            favChans = response.data.name
             if(logEnable) log.debug "Getting favourite channel list"
     }
     } catch(Exception e) {
