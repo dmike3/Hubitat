@@ -68,6 +68,7 @@ metadata {
         attribute "fav_channels", "string"
         attribute "status", "string"
         attribute "channel_number", "string"
+        attribute "now_playing", "string"
         
         }
     }
@@ -163,23 +164,40 @@ def refresh() {
         if(logEnable) log.debug "Cannot reach Channels DVR Client. Unable to poll current channel"
     }  
     
+        
+    // Get now playing name
     
-    // Get favourite channel list
-    
-    def paramsFav = [
-        uri: "http://" + clientIP + ":57000/api/favorite_channels/",
+    def paramsPlaying = [
+        uri: "http://" + clientIP + ":57000/api/status/",
         contentType: "application/json",
     ]
 
     try {
-        httpGet(paramsFav) { response ->
-            favChans = response.data
-            log.debug "$favChans"
-            if(logEnable) log.debug "Getting favourite channel list"
+        httpGet(paramsPlaying) { response ->
+            nowPlaying = response.data.now_playing
+            log.debug "$nowPlaying"
+            if(logEnable) log.debug "Getting now playing name"
     }
     } catch(Exception e) {
-        if(logEnable) log.debug "Cannot reach Channels DVR Client. Unable to poll favourite channels"
-    }    
+        if(logEnable) log.debug "Cannot reach Channels DVR Client. Unable to poll current channel"
+    }  
+    
+    // Get favourite channel list
+    
+    //def paramsFav = [
+    //    uri: "http://" + clientIP + ":57000/api/favorite_channels/",
+    //    contentType: "application/json",
+    // ]
+
+    //try {
+    //    httpGet(paramsFav) { response ->
+    //        favChans = response.data
+    //        log.debug "$favChans"
+    //        if(logEnable) log.debug "Getting favourite channel list"
+    //}
+    //} catch(Exception e) {
+    //    if(logEnable) log.debug "Cannot reach Channels DVR Client. Unable to poll favourite channels"
+    //}    
 
     } // Closing IF statement
     
@@ -191,6 +209,9 @@ def refresh() {
     
     updateDataValue("channel_number", "$chanNum")
     sendEvent(name: "channel_number", value: chanNum)
+    
+    updateDataValue("now_playing", "$nowPlaying")
+    sendEvent(name: "now_playing", value: nowPlaying)
     
     updateDataValue("fav_channels", "$favChans")
     sendEvent(name: "fav_channels", value: favChans)
