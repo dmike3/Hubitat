@@ -17,7 +17,7 @@ Channels DVR Client
 *** DOWNLOAD LINKS ***
 
 Driver: https://raw.githubusercontent.com/dmike3/Hubitat/master/Drivers/Channels_DVR/channelsdvr.groovy
-Readme: 
+Readme: https://raw.githubusercontent.com/dmike3/Hubitat/master/Drivers/Channels_DVR/README.TXT
 
 *** INSTALLATION: ***
 
