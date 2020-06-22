@@ -244,6 +244,7 @@ def off() {
 
 def toggle_mute() {
     
+    currstate = device.currentState("switch").getValue()
     if(currstate == "on") { 
         
     def params = [
@@ -268,6 +269,7 @@ def toggle_mute() {
 
 def prev_channel() {
     
+    currstate = device.currentState("switch").getValue()
     if(currstate == "on") {
     
     def params = [
@@ -291,6 +293,7 @@ def prev_channel() {
 
 def toggle_pause() {
     
+    currstate = device.currentState("switch").getValue()
     if(currstate == "on") {
     
     def params = [
@@ -315,6 +318,7 @@ def toggle_pause() {
 
 def pause() {
     
+    currstate = device.currentState("switch").getValue()
     if(currstate == "on") {
         
     def params = [
@@ -339,6 +343,7 @@ def pause() {
 
 def resume() {
     
+    currstate = device.currentState("switch").getValue()
     if(currstate == "on") {
     
     def params = [
@@ -362,6 +367,7 @@ def resume() {
 
 def stop() {
     
+    currstate = device.currentState("switch").getValue()
     if(currstate == "on") {
     
     def params = [
@@ -385,6 +391,7 @@ def stop() {
 
 def seek_secs() {
     
+    currstate = device.currentState("switch").getValue()
     if(currstate == "on") {
     
         if(seekSecs) {
@@ -416,6 +423,7 @@ def seek_secs() {
 
 def seek_forward() {
     
+    currstate = device.currentState("switch").getValue()
     if(currstate == "on") {
     
         def params = [
@@ -441,6 +449,7 @@ def seek_forward() {
 
 def seek_backward() {
     
+    currstate = device.currentState("switch").getValue()
     if(currstate == "on") {
     
     def params = [
@@ -464,6 +473,7 @@ def seek_backward() {
 
 def skip_forward() {
     
+    currstate = device.currentState("switch").getValue()
     if(currstate == "on") {
     
     def params = [
@@ -488,6 +498,7 @@ def skip_forward() {
 
 def skip_backward() {
     
+    currstate = device.currentState("switch").getValue()
     if(currstate == "on") {
         
     def params = [
@@ -511,6 +522,7 @@ def skip_backward() {
 
 def play_channel() {
     
+    currstate = device.currentState("switch").getValue()
     if(currstate == "on") {
     
         if(chanNumber) {
@@ -542,6 +554,7 @@ def play_channel() {
 
 def play_recording() {
     
+    currstate = device.currentState("switch").getValue()
     if(currstate == "on") {
         
         if(recordingID) {
