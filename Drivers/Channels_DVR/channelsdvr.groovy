@@ -65,10 +65,10 @@ metadata {
         capability "Refresh"
         capability "Switch"
         
-        attribute "fav_channels", "string"
         attribute "status", "string"
         attribute "channel_number", "string"
         attribute "now_playing", "string"
+        attribute "fav_channels", "string"
         
         }
     }
