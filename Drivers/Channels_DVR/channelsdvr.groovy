@@ -243,7 +243,7 @@ def toggle_mute() {
         
     }
     else {
-        log.debug "Channels is currently in the off state"    
+        if(logEnable) log.debug "Channels is currently in the off state"    
     }
        
 }
@@ -267,7 +267,7 @@ def prev_channel() {
         
     }
     else {
-        log.debug "Channels is currently in the off state"    
+        if(logEnable) log.debug "Channels is currently in the off state"    
     }
 }
 
@@ -290,7 +290,7 @@ def toggle_pause() {
         
     }
     else {
-        log.debug "Channels is currently in the off state"   
+        if(logEnable) log.debug "Channels is currently in the off state"   
     }    
     
 }
@@ -314,7 +314,7 @@ def pause() {
         
     }
     else {
-        log.debug "Channels is currently in the off state"  
+        if(logEnable) log.debug "Channels is currently in the off state"  
     }
     
 }
@@ -338,7 +338,7 @@ def resume() {
         
     }
     else {
-        log.debug "Channels is currently in the off state"   
+        if(logEnable) log.debug "Channels is currently in the off state"   
     }
 }
 
@@ -361,7 +361,7 @@ def stop() {
         
     }
     else {
-        log.debug "Channels is currently in the off state"   
+        if(logEnable) log.debug "Channels is currently in the off state"   
     }
 }
 
@@ -391,7 +391,7 @@ def seek_secs() {
         
     }
     else {
-        log.debug "Channels is currently in the off state"   
+        if(logEnable) log.debug "Channels is currently in the off state"   
     }
     
 }
@@ -416,7 +416,7 @@ def seek_forward() {
     }
     
     else {
-        log.debug "Channels is currently in the off state"   
+        if(logEnable) log.debug "Channels is currently in the off state"   
     }
     
 }
@@ -440,7 +440,7 @@ def seek_backward() {
         
     }
     else {
-        log.debug "Channels is currently in the off state"   
+        if(logEnable) log.debugg "Channels is currently in the off state"   
     }
 }
 
@@ -463,7 +463,7 @@ def skip_forward() {
         
     }
     else {
-        log.debug "Channels is currently in the off state"   
+        if(logEnable) log.debug "Channels is currently in the off state"   
     }
     
 }
@@ -487,7 +487,7 @@ def skip_backward() {
     
     }
     else {
-        log.debug "Channels is currently in the off state"   
+        if(logEnable) log.debug "Channels is currently in the off state"   
     }
 }
 
@@ -517,7 +517,7 @@ def play_channel() {
     }
     
     else {
-        log.debug "Channels is currently in the off state"   
+        if(logEnable) log.debug "Channels is currently in the off state"   
     }
     
 }
@@ -547,6 +547,6 @@ def play_recording() {
         }
     }
     else {
-        log.debug "Channels is currently in the off state"   
+        if(logEnable) log.debug "Channels is currently in the off state"   
     }
 }
