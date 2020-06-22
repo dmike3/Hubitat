@@ -136,7 +136,7 @@ def refresh() {
             on()
     }
     } catch(Exception e) {
-        if(logEnable) log.debug "Cannot reach Channels DVR Client. Unable to poll status"
+        if(logEnable) log.debug "Cannot reach Channels DVR Client. Unable to poll status. Setting switch to off"
         off()
     }    
     
