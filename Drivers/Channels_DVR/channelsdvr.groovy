@@ -58,7 +58,7 @@ metadata {
         name: "Channels DVR Driver",
         namespace: "n3!",
         author: "n3! development",
-        importUrl: "") {       
+        importUrl: "https://raw.githubusercontent.com/dmike3/Hubitat/master/Drivers/Channels_DVR/channelsdvr.groovy") {       
         capability "Initialize"
         capability "Refresh"
         capability "Switch"
