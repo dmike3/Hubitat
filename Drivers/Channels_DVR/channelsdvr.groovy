@@ -120,16 +120,18 @@ def refresh() {
     def favChans = "Unavailable"
     def chanNum = "0"
     def currstate = device.currentState("switch").getValue()
+
     
     // Get Status
     
     def paramsStatus = [
         uri: "http://" + clientIP + ":57000/api/status/",
-        contentType: "application/json",
+        requestContentType: "application/json",
+        timeout : 15,
     ]
 
     try {
-        httpGet(paramsStatus) { resp ->
+        httpGet(paramsStatus) { response ->
             status = response.data.status
             log.debug "$status"
             if(logEnable) log.debug "Getting channels status"
@@ -142,8 +144,6 @@ def refresh() {
     
     currstate = device.currentState("switch").getValue()
     
-    
-    
     if(currstate == "on") { 
        
     // Get current channel
@@ -154,7 +154,7 @@ def refresh() {
     ]
 
     try {
-        httpGet(paramsChannel) { resp ->
+        httpGet(paramsChannel) { response ->
             chanNum = response.data.channel.number
             log.debug "$chanNum"
             if(logEnable) log.debug "Getting current channel"
@@ -172,8 +172,8 @@ def refresh() {
     ]
 
     try {
-        httpGet(paramsFav) { resp ->
-            favChans = response.data.channel.number
+        httpGet(paramsFav) { response ->
+            favChans = response.data
             log.debug "$favChans"
             if(logEnable) log.debug "Getting favourite channel list"
     }
