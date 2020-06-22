@@ -141,7 +141,7 @@ def refresh() {
         if(logEnable) log.debug "Cannot reach Channels DVR Client. Unable to poll status. Setting switch to off"
         off()
     }    
-    
+
     currstate = device.currentState("switch").getValue()
     
     if(currstate == "on") { 
@@ -161,8 +161,7 @@ def refresh() {
     } catch(Exception e) {
         if(logEnable) log.debug "Cannot reach Channels DVR Client. Unable to poll current channel"
     }  
-    
-        
+           
     // Get now playing name
     
     def paramsPlaying = [
@@ -199,7 +198,6 @@ def refresh() {
     
     // Update custom attributes
     
-    
     updateDataValue("status", "$status")
     sendEvent(name: "status", value: status)
     
@@ -210,8 +208,7 @@ def refresh() {
     sendEvent(name: "now_playing", value: nowPlaying)
     
     updateDataValue("fav_channels", "$favChans")
-    sendEvent(name: "fav_channels", value: favChans)
-   
+    sendEvent(name: "fav_channels", value: favChans)    
 }
 
 // Commands
@@ -240,6 +237,7 @@ def off() {
     stop()
     
 }
+
 // Event Handlers
 
 def toggle_mute() {
@@ -280,6 +278,7 @@ def prev_channel() {
     try {
         httpPostJson(params) { resp ->
             if(logEnable) log.debug "Sending previous channel command"
+            runIn(1, refresh)
         }
     } catch(Exception e) {
         if(logEnable) log.debug "error occured calling httpPost ${e}"
@@ -378,6 +377,7 @@ def stop() {
     try {
         httpPostJson(params) { resp ->
             if(logEnable) log.debug "Sending stop command"
+            runIn(1, refresh)
         }
     } catch(Exception e) {
         if(logEnable) log.debug "error occured calling httpPost ${e}"
@@ -535,6 +535,7 @@ def play_channel() {
         try {
             httpPostJson(params) { resp ->
                 if(logEnable) log.debug "Sending channel number command"
+                runIn(1, refresh)
         }
         } catch(Exception e) {
             if(logEnable) log.debug "error occured calling httpPost ${e}"
@@ -567,6 +568,7 @@ def play_recording() {
         try {
             httpPostJson(params) { resp ->
                 if(logEnable) log.debug "Sending recording ID command"
+                runIn(1, refresh)
         }
         } catch(Exception e) {
             if(logEnable) log.debug "error occured calling httpPost ${e}"
