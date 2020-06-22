@@ -38,8 +38,7 @@ import groovy.transform.Field
     "10 Minutes",
     "15 Minutes",
     "30 Minutes",
-    "1 Hour",
-    
+    "1 Hour",    
 ]
 
 preferences {
@@ -50,7 +49,6 @@ preferences {
     input name: "recordingID", type: "number",   title: "Recording ID to play (Optional)", required: false
     input name: "pollTime", type: "enum", title: "Poll Time", required: true, multiple: false, defaultValue: timeOptions[2], options: timeOptions
     input name: "logEnable", type: "bool",   title: "Enable debug logging", defaultValue: false, required: true
-
 }
 
 metadata {
@@ -69,9 +67,8 @@ metadata {
         attribute "channel_number", "string"
         attribute "now_playing", "string"
         attribute "fav_channels", "string"
-        
-        }
     }
+}
 
 def initialize(){
    
@@ -82,8 +79,7 @@ def initialize(){
     if (pollTime == "3 Minutes") {
         schedule("0 */3 * ? * *", refresh)
     }
-    
-    
+   
     if (pollTime == "5 Minutes") {
         schedule("0 */5 * ? * *	", refresh)
     }
@@ -108,12 +104,10 @@ def initialize(){
 
 def updated() {
     unschedule(pollTime)
-    initialize()
-    
+    initialize()  
 }
 
 def refresh() {
- 
     state.version = "1.0.0"
     
     if(logEnable) log.debug "Refresh Called"
@@ -122,7 +116,6 @@ def refresh() {
     def chanNum = "0"
     def currstate = device.currentState("switch").getValue()
 
-    
     // Get Status
     
     def paramsStatus = [
@@ -229,13 +222,11 @@ def refresh() {
 
 def on() {
     sendEvent(name: "switch", value: "on")
-        
 }
 
 def off() {
     sendEvent(name: "switch", value: "off")
-    stop()
-    
+    stop() 
 }
 
 // Event Handlers
@@ -312,7 +303,6 @@ def toggle_pause() {
     else {
         if(logEnable) log.debug "Channels is currently in the off state"   
     }    
-    
 }
 
 def pause() {
@@ -337,7 +327,6 @@ def pause() {
     else {
         if(logEnable) log.debug "Channels is currently in the off state"  
     }
-    
 }
 
 def resume() {
@@ -417,8 +406,7 @@ def seek_secs() {
     }
     else {
         if(logEnable) log.debug "Channels is currently in the off state"   
-    }
-    
+    }    
 }
 
 def seek_forward() {
@@ -444,7 +432,6 @@ def seek_forward() {
     else {
         if(logEnable) log.debug "Channels is currently in the off state"   
     }
-    
 }
 
 def seek_backward() {
@@ -493,7 +480,6 @@ def skip_forward() {
     else {
         if(logEnable) log.debug "Channels is currently in the off state"   
     }
-    
 }
 
 def skip_backward() {
@@ -550,7 +536,6 @@ def play_channel() {
     else {
         if(logEnable) log.debug "Channels is currently in the off state"   
     }
-    
 }
 
 def play_recording() {
