@@ -109,17 +109,58 @@ def updated() {
 
 def refresh() {
     state.version = "1.0.0"
+    status = "Unavailable"
+    favChans = "Unavailable"
+    chanNum = "0"
+    nowPlaying = "Unavailable"
     
     if(logEnable) log.debug "Refresh Called"
-    def status = "Unavailable"
-    def favChans = "Unavailable"
-    def chanNum = "0"
-    def nowPlaying = "Unavailable"
+    
+    // Getting Status
+    
+    def paramsStatus = [
+        uri: "http://" + clientIP + ":57000/api/status/",
+        requestContentType: "application/json",
+        timeout : 15,
+    ]
+
+    try {
+        httpGet(paramsStatus) { response ->
+            sendEvent(name: "switch", value: "on")
+            runIn(1, getInfo)
+    }
+    } catch(Exception e) {
+        if(logEnable) log.debug "Cannot reach Channels DVR Client. Unable to poll status. Setting switch to off"
+        off()
+        // Update custom attributes
+        
+        updateDataValue("status", "$status")
+        sendEvent(name: "status", value: status)
+    
+        updateDataValue("channel_number", "$chanNum")
+        sendEvent(name: "channel_number", value: chanNum)
+    
+        updateDataValue("now_playing", "$nowPlaying")
+        sendEvent(name: "now_playing", value: nowPlaying)
+    
+        updateDataValue("fav_channels", "$favChans")
+        sendEvent(name: "fav_channels", value: favChans)
+
+    }
+    
+}
+
+def getInfo() {
+ 
+    status = "Unavailable"
+    favChans = "Unavailable"
+    chanNum = "0"
+    nowPlaying = "Unavailable"
 
     def currstate = device.currentState("switch").getValue()
-
-    // Get Status
     
+    if(currstate == "on") {
+        
     def paramsStatus = [
         uri: "http://" + clientIP + ":57000/api/status/",
         requestContentType: "application/json",
@@ -136,11 +177,7 @@ def refresh() {
         if(logEnable) log.debug "Cannot reach Channels DVR Client. Unable to poll status. Setting switch to off"
         off()
     }    
-
-    currstate = device.currentState("switch").getValue()
-    
-    if(currstate == "on") { 
-       
+   
     // Get current channel
     
     def paramsChannel = [
@@ -188,8 +225,8 @@ def refresh() {
     } catch(Exception e) {
         if(logEnable) log.debug "Cannot reach Channels DVR Client. Unable to poll favourite channels"
     }    
-
-    } // Closing IF statement
+    
+} // Closing IF
     
     // Update custom attributes
     
@@ -203,7 +240,8 @@ def refresh() {
     sendEvent(name: "now_playing", value: nowPlaying)
     
     updateDataValue("fav_channels", "$favChans")
-    sendEvent(name: "fav_channels", value: favChans)    
+    sendEvent(name: "fav_channels", value: favChans)
+
 }
 
 // Commands
