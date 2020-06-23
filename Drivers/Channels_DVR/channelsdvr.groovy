@@ -114,6 +114,8 @@ def refresh() {
     def status = "Unavailable"
     def favChans = "Unavailable"
     def chanNum = "0"
+    def nowPlaying = "Unavailable"
+
     def currstate = device.currentState("switch").getValue()
 
     // Get Status
