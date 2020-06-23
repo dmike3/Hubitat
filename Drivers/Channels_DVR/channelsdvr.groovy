@@ -155,7 +155,7 @@ def getInfo() {
     status = "Unavailable"
     favChans = "Unavailable"
     chanNum = "0"
-    nowPlaying = "Unavailable"
+    nowPlaying = "Nothing Playing"
 
     def currstate = device.currentState("switch").getValue()
     
