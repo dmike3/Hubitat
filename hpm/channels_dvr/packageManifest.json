@@ -1,0 +1,16 @@
+{
+  "packageName": "Channels_DVR",
+  "author": "n3!",
+  "version": "1.0.0",
+  "minimumHEVersion": "2.1.9",
+  "dateReleased": "2020-06-24",
+  "drivers": [
+    {
+      "id": "b011ed3e-4fba-4460-a446-ec92e4a48e94",
+      "name": "Channels DVR Driver",
+      "namespace": "n3!",
+      "location": "https://raw.githubusercontent.com/dmike3/Hubitat/master/Drivers/Channels_DVR/channelsdvr.groovy",
+      "required": true
+    }
+  ]
+}
