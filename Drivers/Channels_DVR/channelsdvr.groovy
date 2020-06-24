@@ -19,7 +19,7 @@
  *
  * Driver: https://raw.githubusercontent.com/dmike3/Hubitat/master/Drivers/Channels_DVR/channelsdvr.groovy
  *
- * README: https://github.com/dmike3/Hubitat/blob/master/Drivers/Channels_DVR/README.TXT
+ * README: https://raw.githubusercontent.com/dmike3/Hubitat/master/Drivers/Channels_DVR/README.TXT
  *-------------------------------------------------------------------------------------------------------------------
  * Copyright 2020 n3! development
  * 
