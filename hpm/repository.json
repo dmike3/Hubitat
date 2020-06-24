@@ -14,6 +14,12 @@
       "category": "Integrations",
       "location": "https://raw.githubusercontent.com/dmike3/Hubitat/master/hpm/channels_dvr/packageManifest.json",
       "description": "Channels DVR. Remote Control Driver."
+    },
+    {
+      "name": "Weather Canada (OWM-EC)",
+      "category": "Integrations",
+      "location": "https://raw.githubusercontent.com/dmike3/Hubitat/master/hpm/weather%20canada%20(owm-ec)/packageManifest.json",
+      "description": "Polls weather information from OpenWeatherMap and Weather Environment Canada (Alert RSS Feed - https://weather.gc.ca/)"
     }
   ]
 }
