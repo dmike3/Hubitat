@@ -1,0 +1,16 @@
+{
+  "packageName": "Weather Canada (OWM-EC)",
+  "author": "n3!",
+  "version": "1.0.1",
+  "minimumHEVersion": "2.1.9",
+  "dateReleased": "2020-06-24",
+  "drivers": [
+    {
+      "id": "7cbdda60-7e48-4729-b9bc-b0315d4851a6",
+      "name": "Weather Canada (OWM-EC)",
+      "namespace": "n3!",
+      "location": "https://raw.githubusercontent.com/dmike3/Hubitat/master/Drivers/Weather%20Canada%20(OWM-EC)/Weather%20Canada%20(OWM-EC).groovy",
+      "required": true
+    }
+  ]
+}
