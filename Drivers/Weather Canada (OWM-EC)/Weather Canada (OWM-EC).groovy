@@ -65,7 +65,7 @@ metadata {
    name: "Weather Canada (OWM-EC)",
    namespace: "n3!",
    author: "n3! development",
-   importUrl: "https://github.com/dmike3/Hubitat/blob/master/Drivers/Weather%20OWM-EC%20Canada/weather-owm-ec-canada.groovy") {
+   importUrl: "https://raw.githubusercontent.com/dmike3/Hubitat/master/Drivers/Weather%20Canada%20(OWM-EC)/Weather%20Canada%20(OWM-EC).groovy") {
         
    capability "Refresh"
    capability "Initialize"
