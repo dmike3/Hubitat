@@ -7,8 +7,8 @@
  *        \/       \/\/
  *          - development
  *
- * Name: Xbox One Smartglass Driver
- * Version: 1.0.2
+ * Name: Xbox One Smartglass
+ * Version: 1.0.3
  * Author: n3! development
  * 
  * Description: Xbox One Smartglass Intergration. The application and driver interfaces with the Xbox Smartglass Project
@@ -32,6 +32,7 @@
  *
  * CHANAGE LOG:
  *
+ * June 24, 20202 - Updated timeout to not throw an error in the logs if it can't reach the specified xbox
  * June 12, 2020 - Added a front end for the driver. Parent/Child apps.
  * June 8, 2020 - Updated the default poll time. Included an App installer
  *
@@ -49,7 +50,7 @@ definition(
     iconX3Url: "",
 	importUrl: "",)
 
-    state.version = "1.0.2"
+    state.version = "1.0.3"
 
 preferences {
     page(name: "mainPage")        
