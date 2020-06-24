@@ -8,7 +8,7 @@
  *          - development
  *
  * Name: Channels DVR Driver
- * Version: 1.0.0 (Alpha)
+ * Version: 1.0.0
  * Author: n3! development
  * 
  * Description: Channels DVR Remote Control.
@@ -17,9 +17,9 @@
  *
  * Download Links:
  *
- * Driver: 
+ * Driver: https://raw.githubusercontent.com/dmike3/Hubitat/master/Drivers/Channels_DVR/channelsdvr.groovy
  *
- * README: 
+ * README: https://github.com/dmike3/Hubitat/blob/master/Drivers/Channels_DVR/README.TXT
  *-------------------------------------------------------------------------------------------------------------------
  * Copyright 2020 n3! development
  * 
