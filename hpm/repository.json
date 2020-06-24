@@ -8,6 +8,12 @@
       "category": "Integrations",
       "location": "https://raw.githubusercontent.com/dmike3/Hubitat/master/hpm/xbox-smartglass/packageManifest.json",
       "description": "Xbox One Smartglass Intergration. The app and driver interface with the Xbox Smartglass Project giving local control of your Xbox One."
+    },
+    {
+      "name": "Channels DVR",
+      "category": "Integrations",
+      "location": "https://raw.githubusercontent.com/dmike3/Hubitat/master/hpm/channels_dvr/packageManifest.json",
+      "description": "Channels DVR. Remote Control Driver."
     }
   ]
 }
