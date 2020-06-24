@@ -8,7 +8,7 @@
  *          - development
  *
  * Name: Xbox One Smartglass Driver
- * Version: 1.0.2
+ * Version: 1.0.3
  * Author: n3! development
  * 
  * Description: Xbox One Smartglass Intergration. The driver interfaces with the Xbox Smartglass Project giving 
@@ -31,7 +31,9 @@
  *
  * CHANAGE LOG:
  *
- * - Updated the default poll time to 5 minutes
+ * June 24, 20202 - Updated timeout to not throw an error in the logs if it can't reach the specified xbox
+ * June 12, 2020 - Added a front end for the driver. Parent/Child apps.
+ * June 8, 2020 - Updated the default poll time. Included an App installer
  *
  **/
 
@@ -117,7 +119,7 @@ def updated() {
 
 def refresh() {
  
-    state.version = "1.0.2"
+    state.version = "1.0.3"
     
     if(logEnable) log.debug "Refresh Called"
     def xboxStatus = ""
@@ -126,13 +128,27 @@ def refresh() {
     httpGet([uri:"http://${restIp}:$restPORT/device", timeout: 10]) { response -> 
             if (response.isSuccess())
             if(logEnable) log.debug "Polling Xbox Devices"
-        } 
+    } 
   
-    httpGet([uri:"http://${restIp}:$restPORT/device?addr=$xboxIP"], { response ->
-    xboxStatus = response.data.devices[liveID].device_status // Storing Device Status in Variable
+    def paramsStatus = [
+        uri: "http://${restIp}:$restPORT/device?addr=$xboxIP",
+        timeout : 10,
+    ]
+
+    // Checking Xbox Status
     
-    })
+    try {
+        httpGet(paramsStatus) { response ->
+            xboxStatus = response.data.devices[liveID].device_status // Storing Device Status in Variable
+    }
+    } catch(Exception e) {
+        if(logEnable) log.debug "Cannot reach Xbox $xboxIP. Unable to poll status."
+    }
     
+    // End of checking Xbox Status
+    
+    // Setting Switch Status
+       
     if(xboxStatus == "Available") {
       
         if(currstate == "off") {
