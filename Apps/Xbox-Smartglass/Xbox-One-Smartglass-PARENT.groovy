@@ -32,7 +32,7 @@
  *
  * CHANAGE LOG:
  *
- * June 24, 20202 - Updated timeout to not throw an error in the logs if it can't reach the specified xbox
+ * June 24, 2020 - Updated timeout to not throw an error in the logs if it can't reach the specified xbox
  * June 12, 2020 - Added a front end for the driver. Parent/Child apps.
  * June 8, 2020 - Updated the default poll time. Included an App installer
  *
