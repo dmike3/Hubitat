@@ -8,7 +8,7 @@
  *          - development
  *
  * Name: Weather Canada (OWM-EC)
- * Version: 1.0.2
+ * Version: 1.0.1
  * Author: n3!
  * 
  * Description: Polls weather information from OpenWeatherMap and Weather Environment Canada (Alert RSS Feed - https://weather.gc.ca/).
@@ -27,12 +27,6 @@
  * The following software is to be used "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express 
  * or implied. 
  *-------------------------------------------------------------------------------------------------------------------
- *
- * Change Log
- *
- * - Fixed bug with weather icon
- * - Updated weather tile to include unit measurements
- *
  **/
 
 import groovy.transform.Field
@@ -104,10 +98,8 @@ metadata {
    attribute "tempToday_max", "number"
    attribute "dewPoint", "number"
    attribute "weatherTile", "string" 
-   attribute "tempTile", "string"
    }
 }
-
 
 def initialize(){
    
@@ -234,8 +226,6 @@ def ow() {
         if(!tempPoll) {
             tempPoll = "Unavailable"
         }
-        updateDataValue("tempTile", "$tempPoll $tempUnit")
-        sendEvent(name: "tempTile", value: tempPoll + " " + tempUnit)
         updateDataValue("temperature", "$tempPoll")
         sendEvent(name: "temperature", value: tempPoll)
         
