@@ -8,7 +8,7 @@
  *          - development
  *
  * Name: Weather Canada (OWM-EC)
- * Version: 1.0.1
+ * Version: 1.0.2
  * Author: n3!
  * 
  * Description: Polls weather information from OpenWeatherMap and Weather Environment Canada (Alert RSS Feed - https://weather.gc.ca/).
@@ -27,6 +27,11 @@
  * The following software is to be used "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express 
  * or implied. 
  *-------------------------------------------------------------------------------------------------------------------
+ *
+ * Change Log
+ *
+ * - Fixed bug with weather icon (June 27, 2020)
+ * - Included unit measurements for Weather Tile
  **/
 
 import groovy.transform.Field
