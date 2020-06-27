@@ -31,7 +31,8 @@
  * Change Log
  *
  * - Fixed bug with weather icon (June 27, 2020)
- * - Included unit measurements for Weather Tile
+ * - Included unit measurements for Weather Tile (June 27, 2020)
+ *
  **/
 
 import groovy.transform.Field
