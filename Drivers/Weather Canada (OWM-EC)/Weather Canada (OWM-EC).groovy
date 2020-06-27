@@ -8,7 +8,7 @@
  *          - development
  *
  * Name: Weather Canada (OWM-EC)
- * Version: 1.0.1
+ * Version: 1.0.2
  * Author: n3!
  * 
  * Description: Polls weather information from OpenWeatherMap and Weather Environment Canada (Alert RSS Feed - https://weather.gc.ca/).
@@ -27,6 +27,12 @@
  * The following software is to be used "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express 
  * or implied. 
  *-------------------------------------------------------------------------------------------------------------------
+ *
+ * Change Log
+ *
+ * - Fixed bug with weather icon
+ * - Updated weather tile to include unit measurements
+ *
  **/
 
 import groovy.transform.Field
@@ -65,7 +71,7 @@ metadata {
    name: "Weather Canada (OWM-EC)",
    namespace: "n3!",
    author: "n3! development",
-   importUrl: "https://raw.githubusercontent.com/dmike3/Hubitat/master/Drivers/Weather%20Canada%20(OWM-EC)/Weather%20Canada%20(OWM-EC).groovy") {
+   importUrl: "https://github.com/dmike3/Hubitat/blob/master/Drivers/Weather%20OWM-EC%20Canada/weather-owm-ec-canada.groovy") {
         
    capability "Refresh"
    capability "Initialize"
@@ -97,7 +103,8 @@ metadata {
    attribute "tempToday_min", "number"
    attribute "tempToday_max", "number"
    attribute "dewPoint", "number"
-   attribute "weatherTile", "string"          
+   attribute "weatherTile", "string" 
+   attribute "tempTile", "string"
    }
 }
 
@@ -168,10 +175,12 @@ def getWeather() {
     // Parse Units
 
     if(units == "Celsius") {
-         unitsParsed = "metric"
+        unitsParsed = "metric"
+        tempUnit = "c"
     }
     else {
-         unitsParsed = "imperial"   
+        unitsParsed = "imperial"
+        tempUnit = "f"
     }
     
     if(logEnable) log.debug "Weather: Units are set to $unitsParsed"
@@ -225,6 +234,8 @@ def ow() {
         if(!tempPoll) {
             tempPoll = "Unavailable"
         }
+        updateDataValue("tempTile", "$tempPoll $tempUnit")
+        sendEvent(name: "tempTile", value: tempPoll + " " + tempUnit)
         updateDataValue("temperature", "$tempPoll")
         sendEvent(name: "temperature", value: tempPoll)
         
@@ -450,7 +461,9 @@ def ow() {
     
         httpGet([uri:"http://api.openweathermap.org/data/2.5/weather?lat=$lat&lon=$lon&appid=$owmAPI&units=$unitsParsed"], { response ->
             
-            condition_iconPoll = response.data.weather.icon.toString().minus('[').minus(']')
+            //condition_iconPoll = response.data.weather.icon.toString().minus('[').minus(']')
+            condition_iconPoll = response.data.weather.icon[0].toString()
+            
             conditionURL = "http://openweathermap.org/img/wn/$condition_iconPoll@2x.png"                   
         })
 
@@ -461,8 +474,8 @@ def ow() {
     def tiletxt = '<div style=\"text-align:center;display:inline;font-size:0.65em;line-height=65%;margin-top:0em;margin-bottom:0em;\"><b>' + "${cityPoll}" + '</b></div><br> ' + ""
     tiletxt+='<div style=\"text-align:center;display:inline;font-size:1em;line-height=100%;margin-top:0em;margin-bottom:0em;\">' + "${weatherPoll}" + "<br>"  
     tiletxt+="<img src='$conditionURL' width='50' height='50' /><br>"
-    tiletxt+="${tempPoll}" + '<span style = \"font-size:.65em;\"> Feels like ' + "${feelsLikePoll}" + '</span><br>'
-    tiletxt+='<div style=\"text-align:center;font-size:.65em;line-height=50%;margin-top:0em;margin-bottom:0em;\"><b>Wind Speed:</b>' + " ${windSpeedPoll}" +  ' <b>Humidity:</b>' + " ${humidityPoll}" + ' <b>Rain Today:</b>' + " ${rainTodayPoll}" + '<br></div>'
+    tiletxt+="${tempPoll}" + " $tempUnit" + '<span style = \"font-size:.65em;\"> Feels like ' + "${feelsLikePoll}" + " $tempUnit" + '</span><br>'
+    tiletxt+='<div style=\"text-align:center;font-size:.65em;line-height=50%;margin-top:0em;margin-bottom:0em;\"><b>Wind Speed:</b>' + " ${windSpeedPoll}" +  ' <b>Humidity:</b>' + " ${humidityPoll} %" + ' <b>Rain Today:</b>' + " ${rainTodayPoll}" + '<br></div>'
 	sendEvent(name: "weatherTile", value: tiletxt, displayed: true)       
 }
 
