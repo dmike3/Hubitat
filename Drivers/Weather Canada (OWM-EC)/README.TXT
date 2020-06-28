@@ -176,13 +176,11 @@ def getWeather() {
         unitsParsed = "metric"
         tempUnit = "c"
         windSpeedUnit = "m/s"
-        
     }
     else {
         unitsParsed = "imperial"
         tempUnit = "f"
         windSpeedUnit = "m/h"
-        
     }
     
     if(logEnable) log.debug "Weather: Units are set to $unitsParsed"
