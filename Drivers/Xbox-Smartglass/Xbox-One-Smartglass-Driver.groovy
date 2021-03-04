@@ -31,6 +31,7 @@
  *
  * CHANAGE LOG:
  *
+ * March 4, 2021 - Updated code to pull in xbox status
  * June 24, 2020 - Updated timeout to not throw an error in the logs if it can't reach the specified xbox
  * June 12, 2020 - Added a front end for the driver. Parent/Child apps.
  * June 8, 2020 - Updated the default poll time. Included an App installer
