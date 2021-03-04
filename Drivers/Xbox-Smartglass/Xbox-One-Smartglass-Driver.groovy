@@ -139,7 +139,7 @@ def refresh() {
     
     try {
         httpGet(paramsStatus) { response ->
-            xboxStatus = response.data.devices[liveID].device_status // Storing Device Status in Variable
+            xboxStatus = response.data[0].device_status // Storing Device Status in Variable
     }
     } catch(Exception e) {
         if(logEnable) log.debug "Cannot reach Xbox $xboxIP. Unable to poll status."
@@ -212,7 +212,7 @@ def on() {
     
     // Checking Xbox Power State via REST
     httpGet([uri:"http://${restIp}:$restPORT/device?addr=$xboxIP"], { response ->
-        xboxStatus = response.data.devices[liveID].device_status // Storing Device Status in Variable
+        xboxStatus = response.data[0].device_status // Storing Device Status in Variable
     })
    
     if(xboxStatus == "Available") {
@@ -246,7 +246,7 @@ def off() {
     
  
     httpGet([uri:"http://${restIp}:$restPORT/device?addr=$xboxIP"], { response ->
-    xboxStatus = response.data.devices[liveID].device_status // Storing Device Status in Variable
+    xboxStatus = response.data[0].device_status // Storing Device Status in Variable
     
     })
     
