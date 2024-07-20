@@ -4,12 +4,6 @@
   "payPalUrl": "https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=7TFJDAWDBTJL2&currency_code=USD&source=url",
   "packages": [
     {
-      "name": "Xbox One Smartglass",
-      "category": "Integrations",
-      "location": "https://raw.githubusercontent.com/dmike3/Hubitat/master/hpm/xbox-smartglass/packageManifest.json",
-      "description": "Xbox One Smartglass Intergration. The app and driver interface with the Xbox Smartglass Project giving local control of your Xbox One."
-    },
-    {
       "name": "Channels DVR",
       "category": "Integrations",
       "location": "https://raw.githubusercontent.com/dmike3/Hubitat/master/hpm/channels_dvr/packageManifest.json",
