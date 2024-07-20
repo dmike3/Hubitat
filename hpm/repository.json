@@ -5,13 +5,13 @@
   "packages": [
     {
       "name": "Channels DVR",
-      "category": "Integrations",
+      "tags": "LAN",
       "location": "https://raw.githubusercontent.com/dmike3/Hubitat/master/hpm/channels_dvr/packageManifest.json",
       "description": "This driver works with Channels DVR clients. It allows remote control features such as On/Off, Pause, Resume, Stop, Play Channel, mute, etc..."
     },
     {
       "name": "Weather Canada (OWM-EC)",
-      "category": "Integrations",
+      "tags": "LAN","WEATHER",
       "location": "https://raw.githubusercontent.com/dmike3/Hubitat/master/hpm/weather%20canada%20(owm-ec)/packageManifest.json",
       "description": "Polls weather information from OpenWeatherMap and Weather Environment Canada (Alert RSS Feed - https://weather.gc.ca/)"
     }
