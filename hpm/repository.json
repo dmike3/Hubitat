@@ -7,7 +7,7 @@
 			"category": "Integrations",
 			"location": "https://raw.githubusercontent.com/dmike3/Hubitat/master/hpm/channels_dvr/packageManifest.json",
 			"description": "This driver works with Channels DVR clients. It allows remote control features such as On/Off, Pause, Resume, Stop, Play Channel, mute, etc...",
-      		"tags": ["LAN"]
+      		        "tags": ["LAN"]
 		},
 		{
 			"name": "Weather Canada (OWM3.0-EC)",
