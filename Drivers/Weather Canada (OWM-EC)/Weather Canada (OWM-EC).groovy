@@ -30,7 +30,7 @@
  *
  * Change Log
  *
- * - Moved from API 2.5 to 3.0 - Remember to setup a subscription. 1000 requests free
+ * - Moved from API 2.5 to 3.0 - Remember to setup a subscription. 1000 requests free per day. (July 21, 2024)
  * - Fixed bug with weather icon (June 27, 2020)
  * - Included unit measurements for Weather Tile (June 27, 2020)
  *
