@@ -93,6 +93,7 @@ metadata {
    attribute "country", "string"
    attribute "sunRise", "string"
    attribute "sunSet", "string"
+   attribute "dewPoint", "number"
    attribute "rainToday", "number"
    attribute "rainTomorrow", "number"
    attribute "rainAfterTomorrow", "number"
@@ -102,8 +103,10 @@ metadata {
    attribute "tempToday", "number"
    attribute "tempToday_min", "number"
    attribute "tempToday_max", "number"
-   attribute "dewPoint", "number"
    attribute "dewPointToday", "number"
+   attribute "moonriseToday", "number"
+   attribute "moonsetToday", "number"
+   attribute "dailySummary", "string"
    attribute "weatherTile", "string" 
    }
 }
@@ -195,15 +198,13 @@ def getWeather() {
     ow()    
 }
 
-// Polls OpenWeatherMap
+// Polls OpenWeatherMap API One Call 3.0
 
 def ow() {
     
     log.info "Weather: Polling Weather"
     
-    httpGet([uri:"https://api.openweathermap.org/data/3.0/onecall?lat=$lat&lon=$lon&appid=$owmAPI&units=$unitsParsed"], { response ->
-//  httpGet([uri:"http://api.openweathermap.org/data/2.5/weather?lat=$lat&lon=$lon&appid=$owmAPI&units=$unitsParsed"], { response ->
-         
+    httpGet([uri:"https://api.openweathermap.org/data/3.0/onecall?lat=$lat&lon=$lon&appid=$owmAPI&units=$unitsParsed"], { response ->        
         
         // Timezone
         
@@ -215,6 +216,16 @@ def ow() {
                 
         updateDataValue("timezone", "$timezonePoll")
         sendEvent(name: "timezone", value: timezonePoll)
+
+        // Daily Summary
+        
+        dailysummaryPoll = response.data.daily.summary[0]
+        
+        if(!dailysummaryPoll) {
+            dailysummaryPoll = 0
+        }
+        updateDataValue("dailysummary", "$dailysummaryPoll")
+        sendEvent(name: "dailysummary", value: dailysummaryPoll)
 
         // Weather
         
@@ -333,13 +344,6 @@ def ow() {
         updateDataValue("windGust", "$wind_gustPoll")
         sendEvent(name: "windGust", value: wind_gustPoll)
         
-    })
-    
-    // OWM One Call API
-    
-    httpGet([uri:"https://api.openweathermap.org/data/3.0/onecall?lat=$lat&lon=$lon&exclude=current,minutely,hourly&appid=$owmAPI&units=$unitsParsed"], { response ->
-    //httpGet([uri:"https://api.openweathermap.org/data/2.5/onecall?lat=$lat&lon=$lon&exclude=current,minutely,hourly&appid=$owmAPI&units=$unitsParsed"], { response ->
-        
         // Rain Today
         
         rainTodayPoll = response.data.daily.rain[0]
@@ -440,6 +444,27 @@ def ow() {
         }
         updateDataValue("dewPointToday", "$dewPointTodayPoll")
         sendEvent(name: "dewPointToday", value: dewPointTodayPoll)
+
+        // Moonrise Today
+        
+        moonriseTodayPoll = response.data.daily.moonrise[0]
+        
+        if(!moonriseTodayPoll) {
+            moonriseTodayPoll = 0
+        }
+        updateDataValue("moonriseToday", "$moonriseTodayPoll")
+        sendEvent(name: "moonriseToday", value: moonriseTodayPoll)
+
+
+        // Moonset Today
+        
+        moonsetTodayPoll = response.data.daily.moonset[0]
+        
+        if(!moonsetTodayPoll) {
+            moonsetTodayPoll = 0
+        }
+        updateDataValue("moonsetToday", "$moonsetTodayPoll")
+        sendEvent(name: "moonsetToday", value: moonsetTodayPoll)
         
     })
     
