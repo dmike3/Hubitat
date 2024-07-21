@@ -7,8 +7,8 @@
  *        \/       \/\/
  *          - development
  *
- * Name: Weather Canada (OWM-EC)
- * Version: 1.0.2
+ * Name: Weather Canada (OWM3.0-EC)
+ * Version: 1.0.3
  * Author: n3!
  * 
  * Description: Polls weather information from OpenWeatherMap and Weather Environment Canada (Alert RSS Feed - https://weather.gc.ca/).
@@ -30,6 +30,7 @@
  *
  * Change Log
  *
+ * - Moved from API 2.5 to 3.0 - Remember to setup a subscription. 1000 requests free
  * - Fixed bug with weather icon (June 27, 2020)
  * - Included unit measurements for Weather Tile (June 27, 2020)
  *
@@ -81,11 +82,9 @@ metadata {
 
    attribute "alert", "string"
    attribute "alertSummary", "string"
-   attribute "city", "string"
+   attribute "timezone", "string"
    attribute "weather", "string"
    attribute "feels_like", "number"
-   attribute "temp_min", "number"
-   attribute "temp_max", "number"
    attribute "windSpeed", "number"
    attribute "windDirection", "number"
    attribute "visibility", "number"
@@ -168,7 +167,7 @@ def getWeather() {
        
     // State Variables
 
-    state.Version = '1.0.1'  
+    state.Version = '1.0.3'  
     
     // Parse Units
 
@@ -200,23 +199,24 @@ def ow() {
     
     log.info "Weather: Polling Weather"
     
-    httpGet([uri:"http://api.openweathermap.org/data/2.5/weather?lat=$lat&lon=$lon&appid=$owmAPI&units=$unitsParsed"], { response ->
+    httpGet([uri:"https://api.openweathermap.org/data/3.0/onecall?lat=$lat&lon=$lon&appid=$owmAPI&units=$unitsParsed"], { response ->
+//  httpGet([uri:"http://api.openweathermap.org/data/2.5/weather?lat=$lat&lon=$lon&appid=$owmAPI&units=$unitsParsed"], { response ->
          
         
-        // City
+        // Timezone
         
-        cityPoll = response.data.name
+        timezonePoll = response.data.timezone
         
-        if(!cityPoll) {
-            cityPoll = "Unavailable"
+        if(!timezonePoll) {
+            timezonePoll = "Unavailable"
         }
                 
-        updateDataValue("city", "$cityPoll")
-        sendEvent(name: "city", value: cityPoll)
+        updateDataValue("timezone", "$timezonePoll")
+        sendEvent(name: "timezone", value: timezonePoll)
 
         // Weather
         
-        weatherPoll = response.data.weather.description
+        weatherPoll = response.data.current.weather.description
         
         if(!weatherPoll) {
             weatherPoll = "Unavailable"
@@ -227,7 +227,7 @@ def ow() {
         
         // Temperature
                 
-        tempPoll = response.data.main.temp
+        tempPoll = response.data.current.temp
         
         if(!tempPoll) {
             tempPoll = "Unavailable"
@@ -237,7 +237,7 @@ def ow() {
         
         // Feels Like
         
-        feelsLikePoll = response.data.main.feels_like
+        feelsLikePoll = response.data.current.feels_like
         
         if(!feelsLikePoll) {
              feelsLikePoll = 0
@@ -246,31 +246,10 @@ def ow() {
         updateDataValue("feels_like", "$feelsLikePoll")
         sendEvent(name: "feels_like", value: feelsLikePoll)
         
-        // Temp Min
-        
-        tempMinPoll = response.data.main.temp_min
-        
-        if(!tempMinPoll) {
-             tempMinPoll = 0   
-        }
-        
-        updateDataValue("temp_min", "$tempMinPoll")
-        sendEvent(name: "temp_min", value: tempMinPoll)
-        
-        // Temp Max
-        
-        tempMaxPoll = response.data.main.temp_max
-        
-        if(!tempMaxPoll) {
-             tempMaxPoll = 0   
-        }
-        
-        updateDataValue("temp_max", "$tempMaxPoll")
-        sendEvent(name: "temp_max", value: tempMaxPoll)
         
         // Pressure
         
-        pressurePoll = response.data.main.pressure
+        pressurePoll = response.data.current.pressure
         
         if(!pressurePoll) {
              pressurePoll = 0   
@@ -281,7 +260,7 @@ def ow() {
         
         // Humidity
         
-        humidityPoll = response.data.main.humidity
+        humidityPoll = response.data.current.humidity
         
         if(!humidityPoll) {
              humidityPoll = 0   
@@ -292,7 +271,7 @@ def ow() {
         
         // Visibility
         
-        visibilityPoll = response.data.visibility
+        visibilityPoll = response.data.current.visibility
         
         if(!visibilityPoll) {
              visibilityPoll = 0   
@@ -303,7 +282,7 @@ def ow() {
         
         // Wind Speed
         
-        windSpeedPoll = response.data.wind.speed
+        windSpeedPoll = response.data.current.wind_speed
         if(!windSpeedPoll) {
             windSpeedPoll = 0   
         }
@@ -313,7 +292,7 @@ def ow() {
         
         // Wind Direction
         
-        windDirectionPoll = response.data.wind.deg
+        windDirectionPoll = response.data.current.wind_deg
         
         if(!windDirectionPoll) {
              windDirectionPoll = 0   
@@ -324,7 +303,7 @@ def ow() {
         
         // Clouds
         
-        cloudsPoll = response.data.clouds.all
+        cloudsPoll = response.data.current.clouds
         
         if(!cloudsPoll) {
              cloudsPoll = 0   
@@ -334,19 +313,20 @@ def ow() {
         
         // Country Poll
         
-        countryPoll = response.data.sys.country
+        //countryPoll = response.data.sys.country
         
-        if(!countryPoll) {
-             countryPoll = "Unavailable"   
-        }
-        updateDataValue("country", "$countryPoll")
-        sendEvent(name: "country", value: countryPoll)
+        //if(!countryPoll) {
+        //     countryPoll = "Unavailable"   
+        //}
+        //updateDataValue("country", "$countryPoll")
+        //sendEvent(name: "country", value: countryPoll)
         
     })
     
     // OWM One Call API
     
-    httpGet([uri:"https://api.openweathermap.org/data/2.5/onecall?lat=$lat&lon=$lon&exclude=current,minutely,hourly&appid=$owmAPI&units=$unitsParsed"], { response ->
+    httpGet([uri:"https://api.openweathermap.org/data/3.0/onecall?lat=$lat&lon=$lon&exclude=current,minutely,hourly&appid=$owmAPI&units=$unitsParsed"], { response ->
+    //httpGet([uri:"https://api.openweathermap.org/data/2.5/onecall?lat=$lat&lon=$lon&exclude=current,minutely,hourly&appid=$owmAPI&units=$unitsParsed"], { response ->
         
         // Rain Today
         
@@ -455,10 +435,11 @@ def ow() {
     
     // Get Weather Icon  http://openweathermap.org/img/wn/01d@2x.png
     
-        httpGet([uri:"http://api.openweathermap.org/data/2.5/weather?lat=$lat&lon=$lon&appid=$owmAPI&units=$unitsParsed"], { response ->
+        httpGet([uri:"https://api.openweathermap.org/data/3.0/onecall?lat=$lat&lon=$lon&appid=$owmAPI&units=$unitsParsed"], { response ->
+        //httpGet([uri:"http://api.openweathermap.org/data/2.5/weather?lat=$lat&lon=$lon&appid=$owmAPI&units=$unitsParsed"], { response ->
             
             //condition_iconPoll = response.data.weather.icon.toString().minus('[').minus(']')
-            condition_iconPoll = response.data.weather.icon[0].toString()
+            condition_iconPoll = response.data.current.weather.icon[0].toString()
             
             conditionURL = "http://openweathermap.org/img/wn/$condition_iconPoll@2x.png"                   
         })
@@ -467,7 +448,7 @@ def ow() {
     
     // Weather Tile - Used for Dashboard
     
-    def tiletxt = '<div style=\"text-align:center;display:inline;font-size:0.65em;line-height=65%;margin-top:0em;margin-bottom:0em;\"><b>' + "${cityPoll}" + '</b></div><br> ' + ""
+    def tiletxt = '<div style=\"text-align:center;display:inline;font-size:0.65em;line-height=65%;margin-top:0em;margin-bottom:0em;\"><b>' + "${timezonePoll}" + '</b></div><br> ' + ""
     tiletxt+='<div style=\"text-align:center;display:inline;font-size:1em;line-height=100%;margin-top:0em;margin-bottom:0em;\">' + "${weatherPoll}" + "<br>"  
     tiletxt+="<img src='$conditionURL' width='50' height='50' /><br>"
     tiletxt+="${tempPoll}" + " $tempUnit" + '<span style = \"font-size:.65em;\"> Feels like ' + "${feelsLikePoll}" + " $tempUnit" + '</span><br>'
