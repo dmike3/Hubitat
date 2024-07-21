@@ -87,6 +87,7 @@ metadata {
    attribute "feels_like", "number"
    attribute "windSpeed", "number"
    attribute "windDirection", "number"
+   attribute "windGust", "number"
    attribute "visibility", "number"
    attribute "clouds", "number"
    attribute "country", "string"
@@ -102,6 +103,7 @@ metadata {
    attribute "tempToday_min", "number"
    attribute "tempToday_max", "number"
    attribute "dewPoint", "number"
+   attribute "dewPointToday", "number"
    attribute "weatherTile", "string" 
    }
 }
@@ -311,15 +313,25 @@ def ow() {
         updateDataValue("clouds", "$cloudsPoll")
         sendEvent(name: "clouds", value: cloudsPoll)
         
-        // Country Poll
+        // Dewpoint Now
         
-        //countryPoll = response.data.sys.country
+        dewPointPoll = response.data.current.dew_point
         
-        //if(!countryPoll) {
-        //     countryPoll = "Unavailable"   
-        //}
-        //updateDataValue("country", "$countryPoll")
-        //sendEvent(name: "country", value: countryPoll)
+        if(!dewPointPoll) {
+            dewPointPoll = 0
+        }
+        updateDataValue("dewPoint", "$dewPointPoll")
+        sendEvent(name: "dewPoint", value: dewPointPoll)
+
+        // Windgust Now
+        
+        dewPointPoll = response.data.current.wind_gust
+        
+        if(!wind_gustPoll) {
+            wind_gustPoll = 0
+        }
+        updateDataValue("windGust", "$wind_gustPoll")
+        sendEvent(name: "windGust", value: wind_gustPoll)
         
     })
     
@@ -421,13 +433,13 @@ def ow() {
         
         // Dewpoint Daily
         
-        dewPointPoll = response.data.daily.dew_point[0]
+        dewPointTodayPoll = response.data.daily.dew_point[0]
         
-        if(!dewPointPoll) {
-            dewPointPoll = 0
+        if(!dewPointTodayPoll) {
+            dewPointTodayPoll = 0
         }
-        updateDataValue("dewPoint", "$dewPointPoll")
-        sendEvent(name: "dewPoint", value: dewPointPoll)
+        updateDataValue("dewPointToday", "$dewPointTodayPoll")
+        sendEvent(name: "dewPointToday", value: dewPointTodayPoll)
         
     })
     
