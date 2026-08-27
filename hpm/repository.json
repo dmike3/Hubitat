@@ -10,7 +10,7 @@
       		        "tags": ["LAN"]
 		},
 		{
-			"name": "Weather Canada (OWM3.0-EC)",
+			"name": "Weather Canada v1.0.4 (OWM3.0-EC)",
 			"category": "Integrations",
 			"location": "https://raw.githubusercontent.com/dmike3/Hubitat/master/hpm/weather%20canada%20(owm-ec)/packageManifest.json",
 			"description": "Now using OW API 3.0 - Polls weather information from OpenWeatherMap 3.0 and Weather Environment Canada (Alert RSS Feed - https://weather.gc.ca/)",
