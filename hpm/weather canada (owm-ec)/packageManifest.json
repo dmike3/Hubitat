@@ -1,9 +1,9 @@
 {
   "packageName": "Weather Canada (OWM3.0-EC)",
   "author": "n3!",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "minimumHEVersion": "2.1.9",
-  "dateReleased": "2024-07-21",
+  "dateReleased": "2026-08-27",
   "drivers": [
     {
       "id": "7cbdda60-7e48-4729-b9bc-b0315d4851a6",
