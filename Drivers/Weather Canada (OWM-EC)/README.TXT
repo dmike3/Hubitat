@@ -8,7 +8,7 @@
  *          - development
  *
  * Name: Weather Canada (OWM3.0-EC)
- * Version: 1.0.4
+ * Version: 1.0.5
  * Author: n3!
  * 
  * Description: Polls weather information from OpenWeatherMap and Weather Environment Canada (Alert RSS Feed - https://weather.gc.ca/).
