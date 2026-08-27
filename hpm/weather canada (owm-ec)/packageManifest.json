@@ -4,6 +4,7 @@
   "version": "1.0.4",
   "minimumHEVersion": "2.1.9",
   "dateReleased": "2026-08-27",
+  "releaseNotes": "Reduced Hubitat CPU, memory, and API usage and improved weather data handling.",
   "drivers": [
     {
       "id": "7cbdda60-7e48-4729-b9bc-b0315d4851a6",
