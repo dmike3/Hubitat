@@ -8,7 +8,7 @@
  *          - development
  *
  * Name: Weather Canada (OWM3.0-EC)
- * Version: 1.0.5
+ * Version: 1.0.6
  * Author: n3!
  * 
  * Description: Polls weather information from OpenWeatherMap and Weather Environment Canada (Alert RSS Feed - https://weather.gc.ca/).
@@ -30,10 +30,12 @@
  *
  * Change Log
  *
+ * - v1.0.6: Fixed wind gust parsing variable so Hubitat/HPM driver updates compile correctly. (August 27, 2026)
  * - v1.0.5: Added rainLast24Hours and rainNext24Hours attributes for irrigation use. rainLast24Hours is maintained 
     locally from one hourly observed-rain sample per hour with a bounded 24-entry history; rainNext24Hours sums the next 
     24 hourly OpenWeather forecast rain values. No additional API calls are used. (August 27, 2026)
- * - v1.0.4: Optimized Hubitat resource/API usage by reusing the main OpenWeather One Call 3.0 response for the weather icon instead of making a second duplicate OpenWeather request each poll. (August 27, 2026)
+ * - v1.0.4: Optimized Hubitat resource/API usage by reusing the main OpenWeather One Call 3.0 response for the weather 
+ 	icon instead of making a second duplicate OpenWeather request each poll. (August 27, 2026)
  * - Moved from API 2.5 to 3.0 - Remember to setup a subscription. 1000 requests free per day. (July 21, 2024)
  * - Fixed bug with weather icon (June 27, 2020)
  * - Included unit measurements for Weather Tile (June 27, 2020)
@@ -178,7 +180,7 @@ def getWeather() {
        
     // State Variables
 
-    state.Version = '1.0.5'  
+    state.Version = '1.0.6'  
     
     // Parse Units
 
