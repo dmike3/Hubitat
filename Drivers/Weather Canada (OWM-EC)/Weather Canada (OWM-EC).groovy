@@ -8,7 +8,7 @@
  *          - development
  *
  * Name: Weather Canada (OWM3.0-EC)
- * Version: 1.0.3
+ * Version: 1.0.4
  * Author: n3!
  * 
  * Description: Polls weather information from OpenWeatherMap and Weather Environment Canada (Alert RSS Feed - https://weather.gc.ca/).
@@ -30,6 +30,10 @@
  *
  * Change Log
  *
+ * - v1.0.4: Added rainLast24Hours and rainNext24Hours attributes for irrigation use. rainLast24Hours is maintained 
+    locally from one hourly observed-rain sample per hour with a bounded 24-entry history; rainNext24Hours sums the next 
+    24 hourly OpenWeather forecast rain values. No additional API calls are used. (August 27, 2026)
+ * - v1.0.4: Optimized Hubitat resource/API usage by reusing the main OpenWeather One Call 3.0 response for the weather icon instead of making a second duplicate OpenWeather request each poll. (August 27, 2026)
  * - Moved from API 2.5 to 3.0 - Remember to setup a subscription. 1000 requests free per day. (July 21, 2024)
  * - Fixed bug with weather icon (June 27, 2020)
  * - Included unit measurements for Weather Tile (June 27, 2020)
@@ -95,6 +99,8 @@ metadata {
    attribute "sunSet", "string"
    attribute "dewPoint", "number"
    attribute "rainToday", "number"
+   attribute "rainLast24Hours", "number"
+   attribute "rainNext24Hours", "number"
    attribute "rainTomorrow", "number"
    attribute "rainAfterTomorrow", "number"
    attribute "snowToday", "number"
@@ -172,7 +178,7 @@ def getWeather() {
        
     // State Variables
 
-    state.Version = '1.0.3'  
+    state.Version = '1.0.4'  
     
     // Parse Units
 
@@ -344,6 +350,61 @@ def ow() {
         updateDataValue("windGust", "$wind_gustPoll")
         sendEvent(name: "windGust", value: wind_gustPoll)
         
+        // Rolling Rainfall for irrigation use
+        // OpenWeather current.rain["1h"] is the observed rain amount for the previous hour.
+        // Store only one sample per clock hour and keep at most 24 samples to stay light on Hubitat resources.
+        def currentRain1h = 0.0
+        try {
+            currentRain1h = (response.data.current?.rain?.get("1h") ?: 0) as BigDecimal
+        } catch (ignored) {
+            currentRain1h = 0.0
+        }
+
+        long providerTimestamp = ((response.data.current?.dt ?: (now() / 1000L)) as Long)
+        long currentHour = (long)(providerTimestamp / 3600L)
+
+        def rainHistory = (state.rainHourlyHistory instanceof List) ? state.rainHourlyHistory : []
+        rainHistory = rainHistory.findAll { entry ->
+            entry instanceof Map && entry.h != null && ((currentHour - (entry.h as Long)) >= 0) && ((currentHour - (entry.h as Long)) < 24)
+        }
+
+        def existingHour = rainHistory.find { entry -> (entry.h as Long) == currentHour }
+        if(existingHour) {
+            existingHour.r = currentRain1h
+        } else {
+            rainHistory << [h: currentHour, r: currentRain1h]
+        }
+
+        rainHistory = rainHistory.sort { a, b -> (a.h as Long) <=> (b.h as Long) }
+        if(rainHistory.size() > 24) {
+            rainHistory = rainHistory.takeRight(24)
+        }
+        state.rainHourlyHistory = rainHistory
+
+        BigDecimal rainLast24HoursPoll = 0.0
+        rainHistory.each { entry ->
+            rainLast24HoursPoll += ((entry.r ?: 0) as BigDecimal)
+        }
+        rainLast24HoursPoll = rainLast24HoursPoll.setScale(2, BigDecimal.ROUND_HALF_UP)
+        sendEvent(name: "rainLast24Hours", value: rainLast24HoursPoll, unit: "mm")
+
+        // Sum the first 24 hourly forecast rain values. One Call 3.0 provides 48 hourly forecast entries.
+        BigDecimal rainNext24HoursPoll = 0.0
+        def hourlyForecast = response.data.hourly
+        if(hourlyForecast instanceof List) {
+            hourlyForecast.take(24).each { hour ->
+                try {
+                    rainNext24HoursPoll += ((hour?.rain?.get("1h") ?: 0) as BigDecimal)
+                } catch (ignored) {
+                    // Missing rain data means 0 mm for that forecast hour.
+                }
+            }
+        }
+        rainNext24HoursPoll = rainNext24HoursPoll.setScale(2, BigDecimal.ROUND_HALF_UP)
+        sendEvent(name: "rainNext24Hours", value: rainNext24HoursPoll, unit: "mm")
+
+        if(logEnable) log.debug "Weather: Rain last 24h ${rainLast24HoursPoll} mm, next 24h ${rainNext24HoursPoll} mm"
+
         // Rain Today
         
         rainTodayPoll = response.data.daily.rain[0]
@@ -465,23 +526,16 @@ def ow() {
         }
         updateDataValue("moonsetToday", "$moonsetTodayPoll")
         sendEvent(name: "moonsetToday", value: moonsetTodayPoll)
+
+        // Weather Icon - reuse this One Call response to avoid a duplicate API request
+        condition_iconPoll = response.data.current?.weather?.icon?.getAt(0)?.toString()
+        if(condition_iconPoll) {
+            conditionURL = "http://openweathermap.org/img/wn/$condition_iconPoll@2x.png"
+        } else {
+            conditionURL = ""
+        }
         
     })
-    
-    if(logEnable) log.debug "Weather: Polling Weather Icon"
-    
-    // Get Weather Icon  http://openweathermap.org/img/wn/01d@2x.png
-    
-        httpGet([uri:"https://api.openweathermap.org/data/3.0/onecall?lat=$lat&lon=$lon&appid=$owmAPI&units=$unitsParsed"], { response ->
-        //httpGet([uri:"http://api.openweathermap.org/data/2.5/weather?lat=$lat&lon=$lon&appid=$owmAPI&units=$unitsParsed"], { response ->
-            
-            //condition_iconPoll = response.data.weather.icon.toString().minus('[').minus(']')
-            condition_iconPoll = response.data.current.weather.icon[0].toString()
-            
-            conditionURL = "http://openweathermap.org/img/wn/$condition_iconPoll@2x.png"                   
-        })
-
-    // End of Weather Icon
     
     // Weather Tile - Used for Dashboard
     
