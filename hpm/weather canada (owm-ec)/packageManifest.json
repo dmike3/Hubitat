@@ -8,7 +8,7 @@
   "drivers": [
     {
       "id": "7cbdda60-7e48-4729-b9bc-b0315d4851a6",
-      "name": "Weather Canada (OWM3.0-EC)",
+      "name": "Weather Canada (OWM-EC)",
       "namespace": "n3!",
       "location": "https://raw.githubusercontent.com/dmike3/Hubitat/master/Drivers/Weather%20Canada%20(OWM-EC)/Weather%20Canada%20(OWM-EC).groovy",
       "required": true
